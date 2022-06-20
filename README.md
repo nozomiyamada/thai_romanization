@@ -8,7 +8,7 @@ developing Seq2Seq model that can romanize Thai person name
 - RTGS(Royal Thai General System of Transcription) and other variations
 - gender f/m
 
-## Evaluation Criteria
+## Evaluation Metrics
 
 - WER(word error rate): to check whole correspondense of each name
 - CER macro: the average of character error rate of each name 
