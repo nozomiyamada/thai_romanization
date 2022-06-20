@@ -10,7 +10,7 @@ developing Seq2Seq model that can romanize Thai person name
 
 ## Evaluation Criteria
 
-- accuracy: to check whole correspondense of each name
+- WER(word error rate): to check whole correspondense of each name
 - CER macro: the average of character error rate of each name 
 - CER micro: the weighted average of character error rate of each name 
 
@@ -38,6 +38,6 @@ result
 
 ||`tltk`|LSTM w/o|
 |:-:|:-:|:-:|
-|accuracy|0.190123|0.243210|
+|WER|0.190123|0.243210|
 |CER macro|0.058586|0.071396|
 |CER micro|0.064011|0.071626|
