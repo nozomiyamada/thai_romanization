@@ -27,7 +27,9 @@ developing Seq2Seq model that can romanize Thai person name
 ## Result
 ### LSTM w/o attention 
 train: 3239 names (20% validation for preliminary train)
+
 test :  810 names
+
 epoch: 100
 
 preliminary train with validation
