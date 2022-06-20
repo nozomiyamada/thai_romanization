@@ -17,12 +17,15 @@ developing Seq2Seq model that can romanize Thai person name
 ## Model
 
 0. `tltk.nlp.th2roman()` - **benchmark**
+
 1.1 LSTM without attention - use only data of name
 
 ![model_train](https://user-images.githubusercontent.com/44984892/174532893-8ff54723-457a-4a33-a12c-c437d9e78934.png)
 
 1.2 LSTM without attention - use also dictinary data
+
 2. LSTM with attention
+
 3. Transformer
 
 ## Result
