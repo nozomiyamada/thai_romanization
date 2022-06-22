@@ -8,6 +8,11 @@ developing Seq2Seq model that can romanize Thai person name
 - RTGS(Royal Thai General System of Transcription) and other variations
 - gender f/m
 
+=> 
+
+- train: 3239 names (20% validation for preliminary train)
+- test :  810 names
+
 ## Evaluation Metrics
 
 - WER(word error rate): to check whole correspondense of each name
@@ -18,32 +23,29 @@ developing Seq2Seq model that can romanize Thai person name
 
 0. `tltk.nlp.th2roman()` - **benchmark**
 
-1.1. LSTM without attention - use only data of name
+1. LSTM without attention - use only data of name
+
+encoder: BiLSTM, decoder: LSTM
 
 ![model_train](https://user-images.githubusercontent.com/44984892/174532893-8ff54723-457a-4a33-a12c-c437d9e78934.png)
-
-1.2. LSTM without attention - use also dictinary data
 
 2. LSTM with attention
 
 3. Transformer
 
 ## Result
-### LSTM w/o attention 
-train: 3239 names (20% validation for preliminary train)
+> LSTM w/o attention 
 
-test :  810 names
+epoch: 60
 
-epoch: 100
-
-preliminary train with validation
+preliminary train with validation - no overfitting
 
 ![loss](https://user-images.githubusercontent.com/44984892/174543126-0d9923db-9dd9-4c58-bcb0-92e152c2b7b7.png)
 
 result 
 
-||`tltk`|LSTM w/o|
-|:-:|:-:|:-:|
-|WER|0.190123|0.243210|
-|CER macro|0.058586|0.071396|
-|CER micro|0.064011|0.071626|
+||LSTM w/o|LSTM attention|tltk|
+|:-:|:-:|:-:|:-:|
+|WER|0.259259|0.156790|0.101235|
+|CER macro|0.075115|0.038668|0.013554|
+|CER micro|0.075955|0.038693|0.013101|
