@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 from IPython.display import Image, display_png
 import pandas as pd
-from keras.utils import plot_model
+from tensorflow.keras.utils import plot_model
 
 ######################################################################################################################
 ###   CLASS FOR PRE-PROCESSING

@@ -22,5 +22,3 @@ id2roman = {v:k for k,v in roman2id.items()}
 ### NUMBER OF IDs
 num_input_id = len(thai2id) # num of Thai characters
 num_output_id = len(roman2id) # num of Roman characters
-
-### SHOW MODEL
