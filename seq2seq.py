@@ -25,12 +25,13 @@ class Data:
             self.input2id = {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} # UNK=unknown, SOS=start of sequence, EOS=end of sequence
         else:
             self.input2id = input2id
-            self.__inverse_id_input()
+            
         if output2id == None:
             self.output2id = {'<UNK>':-1,'<PAD>':0, '<SOS>':1,'<EOS>':2}
         else:
             self.output2id = output2id
-            self.__inverse_id_output()
+        self.__inverse_id_input()
+        self.__inverse_id_output()
     
     def __inverse_id_input(self):
         self.id2input = {v:k for k,v in self.input2id.items()}
@@ -80,19 +81,19 @@ class Data:
     def make_encoder_input(self, seqs=None):
         if seqs==None:
             seqs = self.train_x
-        seqs = [[1]+[self.input2id[token] for token in seq]+[2] for seq in seqs] # <sos> + seq + <eos>
+        seqs = [[1]+[self.input2id.get(token, -1) for token in seq]+[2] for seq in seqs] # <sos> + seq + <eos>
         return pad_sequences(seqs, padding='post', maxlen=self.input_maxlen, value=0)
 
     def make_decoder_input(self, seqs=None):
         if seqs==None:
             seqs = self.train_y
-        seqs = [[1]+[self.output2id[token] for token in seq] for seq in seqs] # <sos> + seq
+        seqs = [[1]+[self.output2id.get(token, -1) for token in seq] for seq in seqs] # <sos> + seq
         return pad_sequences(seqs, padding='post', maxlen=self.output_maxlen, value=0)
 
     def make_decoder_output(self, seqs=None):
         if seqs==None:
             seqs = self.train_y
-        seqs = [[self.output2id[token] for token in seq]+[2] for seq in seqs] # seq + <eos>
+        seqs = [[self.output2id.get(token, -1) for token in seq]+[2] for seq in seqs] # seq + <eos>
         seqs = pad_sequences(seqs, padding='post', maxlen=self.output_maxlen, value=0)
         return to_categorical(seqs, num_classes=self.output_vocab) # one-hot vector
 
@@ -117,7 +118,7 @@ class __BaseModel: # only for inheritance
         return model
 
 class Encoder(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=128, lstm_dropout=0.2, return_seq=False): # must return seq when use attention
+    def __init__(self, data:Data, emb_dim=300, lstm_dim=200, lstm_dropout=0.2, return_seq=False): # must return seq when use attention
         self.lstm_dim = lstm_dim
         self.data = data
         ### Layers
@@ -149,7 +150,7 @@ class Encoder(__BaseModel):
         return model
 
 class Decoder(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=256, lstm_dropout=0.2):
+    def __init__(self, data:Data, emb_dim=300, lstm_dim=400, lstm_dropout=0.2):
         self.lstm_dim = lstm_dim
         self.data = data
         ### Layers
@@ -205,7 +206,7 @@ class Attention:
         return self.hidden(concat_vector)
 
 class AttentionDecoder(Decoder):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=256, lstm_dropout=0.2, attention_dim=300):
+    def __init__(self, data:Data, emb_dim=300, lstm_dim=400, lstm_dropout=0.2, attention_dim=300):
         super().__init__(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim, lstm_dropout=lstm_dropout)
         self.attention = Attention(unit=attention_dim)
         self.enc_output = layers.Input(batch_size=None, shape=(lstm_dim), name='Enc_Output')
@@ -228,7 +229,7 @@ class AttentionDecoder(Decoder):
 ######################################################################################################################
 
 class Seq2Seq(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=128, lstm_dropout=0.2, attention=False, attention_dim=300):
+    def __init__(self, data:Data, emb_dim=300, lstm_dim=200, lstm_dropout=0.2, attention=False, attention_dim=300):
         if not attention:
             self.encoder = Encoder(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim, lstm_dropout=lstm_dropout, return_seq=False)
             self.decoder = Decoder(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim*2, lstm_dropout=lstm_dropout)
@@ -291,48 +292,88 @@ class Seq2Seq(__BaseModel):
             self.history = {k: v+history.history[k] for k,v in self.history.items()}
         return pd.DataFrame(self.history).plot(xlabel='Epoch')
 
-    def predict_one(self, input_seq:list, join_by=None):
+    def predict_one(self, input_seq:list, join_by=None, is_beam=False, beam_return_all=True, beam_depth=3):
         if type(input_seq[0]) == str:
             input_seq = [input_seq] # input must be 2D
         input_seq = self.data.make_encoder_input(input_seq) # convert to ID
         enc_output, h, c = self.encoder_pred.predict(input_seq, verbose=0) # verbose=0: not print
-        target_seq = np.zeros((1, self.data.output_maxlen)) # generate empty target seq of length 1.
+        target_seq = np.zeros((1, self.data.output_maxlen)) # generate target seq of length 1 e.g. [[5,0,0,0,0,...]]
         target_seq[0,0] = 1 # <sos> ID=1
 
         # Sampling loop for a batch of sequences
-        stop_condition = False
-        decoded_seq = []
-        while not stop_condition:
+        def get_next_output(target_seq, h_old, c_old):
             if self.is_attention:
-                output_ids, h, c = self.decoder_pred.predict([target_seq, h, c, enc_output], verbose=0) # not print
+                output_ids, h_new, c_new = self.decoder_pred.predict([target_seq, h_old, c_old, enc_output], verbose=0) # not print
             else:
-                output_ids, h, c = self.decoder_pred.predict([target_seq, h, c], verbose=0) # not print
-            sampled_id= np.argmax(output_ids[0, -1, :])
-            sampled_token = self.data.id2output.get(sampled_id, '<UNK>')
+                output_ids, h_new, c_new = self.decoder_pred.predict([target_seq, h_old, c_old], verbose=0) # not print
+            return output_ids, h_new, c_new
 
-            # stop if <eos>=2
-            if (sampled_id == 2 or len(decoded_seq) > self.data.output_maxlen):
-                stop_condition = True
+        # if greedy search, sampled_seq is list of index  e.g. [5,3,2,...]
+        # if beam search, sampled_seq is [[list of index, ΣlogP, h, c], [list of index, ΣlogP, h, c],...]
+        stop_condition = False
+        sampled_seq = []
+        
+        while not stop_condition:
+
+            ### sampling for greedy search ###
+            if not is_beam:
+                output_ids, h, c = get_next_output(target_seq, h, c) # h, c are overwrited
+                sampled_id= np.argmax(output_ids[0, -1, :])
+                
+                if (sampled_id == 2 or len(sampled_seq) > self.data.output_maxlen): # stop if <eos>=2
+                    stop_condition = True
+                else:
+                    sampled_seq.append(sampled_id)
+                target_seq = np.zeros((1, self.data.output_maxlen)) # update the target sequence (of length 1).
+                target_seq[0, 0] = sampled_id 
+
+            ### sampling for beam search ###
+            # get both argmaxs and probs
             else:
-                decoded_seq.append(sampled_token)
+                if len(sampled_seq) == 0: # first token
+                    output_ids, h, c = get_next_output(target_seq, h, c) # h, c are overwrited
+                    sampled_ids= np.argpartition(output_ids[0, -1, :], -beam_depth)[-beam_depth:] # args of 3 max values
+                    probs = output_ids[0, -1, :][sampled_ids]
+                    sampled_seq = [[[i], np.log(prob), h, c] for i, prob in zip(sampled_ids, probs)]
+                else:
+                    if all([x[0][-1]==2 for x in sampled_seq]) or all([len(x[0]) >= self.data.output_maxlen for x in sampled_seq]): # if all 3 seq end with <eos>=2
+                        break
+                    candidates = [] # beam_depth*beam_depth candidates
+                    for seq_now, prob_now, h_now, c_now in sampled_seq: # e.g. [[3,10,4], ΣlogP, h, c]
+                        if seq_now[-1]==2: # if ends with <eos>, add to candidates and skip
+                            candidates.append([seq_now, prob_now, h_now, c_now])
+                            continue
+                        target_seq = np.zeros((1, self.data.output_maxlen))
+                        target_seq[0, 0] = seq_now[-1] # the last id
+                        output_ids, h, c = get_next_output(target_seq, h_now, c_now)
+                        sampled_ids= np.argpartition(output_ids[0, -1, :], -beam_depth)[-beam_depth:] # args of 3 max values
+                        probs = output_ids[0, -1, :][sampled_ids]
+                        candidates += [[seq_now+[i], prob_now+np.log(prob), h, c] for i, prob in zip(sampled_ids, probs)]
+                    sampled_seq = sorted(candidates, key=lambda x: x[1], reverse=True)[:beam_depth] # only 3 max prob
+                    #print([x[:2] for x in sampled_seq])
+        
+        ### Decode ###
+        def decode_sample(sampled_seq, join_by):
+            decoded_seq = [self.data.id2output.get(sampled_id, -1) for sampled_id in sampled_seq]
+            if type(join_by)==str:
+                decoded_seq = join_by.join(decoded_seq)
+            return decoded_seq
 
-            # update the target sequence (of length 1).
-            target_seq = np.zeros((1, self.data.output_maxlen))
-            target_seq[0, 0] = sampled_id
+        if is_beam:
+            sampled_seq = [x[0] for x in sampled_seq] # take only list of index
+            sampled_seq = [x[:-1] if x[-1]==2 else x for x in sampled_seq] # if endswith <eos>=2, remove it
+            if beam_return_all:
+                return [decode_sample(x, join_by=join_by) for x in sampled_seq] # return all candidates
+            else:
+                sampled_seq = sampled_seq[0] # take only max prob one
+                return decode_sample(sampled_seq, join_by=join_by)
+        else:
+            return decode_sample(sampled_seq, join_by=join_by)
 
-        if type(join_by)==str:
-            decoded_seq = join_by.join(decoded_seq)
-
-        return decoded_seq
-
-    def predict(self, seqs=None, join_by=None):
+    def predict(self, seqs=None, join_by=None, is_beam=False, beam_return_all=True, beam_depth=3):
         if seqs == None:
             seqs = self.data.test_x
         decoded = []
         for seq in tqdm(seqs):
-            decoded.append(self.predict_one(seq, join_by=join_by))
+            decoded.append(self.predict_one(seq, join_by=join_by, is_beam=is_beam, beam_return_all=beam_return_all, beam_depth=beam_depth))
         return decoded
-
-
-
-

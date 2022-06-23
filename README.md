@@ -4,26 +4,35 @@ developing Seq2Seq model that can romanize Thai person name
 
 ## Data
 
-- 4049 names with romanized annotations
+> original data
+ 
+- **3,801** distinct names with romanized annotations
 - RTGS(Royal Thai General System of Transcription) and other variations
 - gender f/m
 
-=> 
+> cleaned data
 
-- train: 3239 names (20% validation for preliminary train)
-- test :  810 names
+- exclude ambiguous names e.g. **เอกรัฐ** : 'ekkarat' or 'ekrat'
+- **3,556** distinct names
+- train: **2,856** names (20% validation for preliminary train)
+- test : **700** names
+
+> additional data
+
+- dictionary of Thai **26,828** words (exclude mono-syllabic words)
+- e.g. `นายตรวจ,naitruat` `คนรัก,khonrak`
 
 ## Evaluation Metrics
 
-- WER(word error rate): to check whole correspondense of each name
-- CER macro: the average of character error rate of each name 
-- CER micro: the weighted average of character error rate of each name 
+- **WER(word error rate)** : to check whole correspondense of each name
+- **CER macro** : the average of character error rate of each name 
+- **CER micro** : the weighted average of character error rate of each name 
 
 ## Model
 
 0. `tltk.nlp.th2roman()` - **benchmark**
 
-1. LSTM without attention - use only data of name
+1. LSTM without attention
 
 encoder: BiLSTM, decoder: LSTM
 
@@ -31,18 +40,22 @@ encoder: BiLSTM, decoder: LSTM
 
 2. LSTM with attention
 
+![model_attention](https://user-images.githubusercontent.com/44984892/175194689-5ed0d2ec-ce10-4067-a47d-7b6edaaea24c.png)
+
 3. Transformer
 
-## Result
-> LSTM w/o attention 
+## Inference
 
-epoch: 60
+1. greedy search
+2. beam search : keep 3 most probable candidates
+
+## Result
 
 preliminary train with validation - no overfitting
 
 ![loss](https://user-images.githubusercontent.com/44984892/174543126-0d9923db-9dd9-4c58-bcb0-92e152c2b7b7.png)
 
-result 
+> Result of name data only
 
 ||LSTM w/o|LSTM attention|tltk|
 |:-:|:-:|:-:|:-:|
