@@ -17,15 +17,15 @@ from keras.utils import plot_model
 
 class Data:
     def __init__(self, input2id=None, output2id=None):
-        self.train_x, self.test_x = [], []
+        self.train_x, self.test_x = [], [] 
         self.train_y, self.test_y = [], []
         self.input_maxlen, self.output_maxlen = 10, 10
         ##### DICT FOR INPUT/OUTPUT <> ID #####
+        # if not use custom ID dictionary, this class will make dictionary from received train data
         if input2id == None:
             self.input2id = {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} # UNK=unknown, SOS=start of sequence, EOS=end of sequence
         else:
-            self.input2id = input2id
-            
+            self.input2id = input2id     
         if output2id == None:
             self.output2id = {'<UNK>':-1,'<PAD>':0, '<SOS>':1,'<EOS>':2}
         else:
@@ -41,19 +41,17 @@ class Data:
         self.__count_vocab_num()
 
     def __count_vocab_num(self):
+        # use in Embedding layer
         self.input_vocab = len(self.input2id)
         self.output_vocab = len(self.output2id)
 
     ##### SET DATA #####
-    def __set_input_train(self, seqs): # seqs: list of list of str
+    def __set_input_train(self, seqs): # seqs: list of list of str  e.g. [['I','eat'],['He','goes']]
         for seq in seqs:
             for token in set(seq) - set(self.input2id.keys()): # only tokens not in dict
                 self.input2id[token] = max(self.input2id.values()) + 1 # {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} -> next ID is 3
         self.__inverse_id_input()
         self.train_x += seqs
-
-    def __set_input_test(self, seqs):
-        self.test_x += seqs
 
     def __set_output_train(self, seqs): # seqs: list of list of str
         for seq in seqs:
@@ -62,10 +60,23 @@ class Data:
         self.__inverse_id_output()
         self.train_y += seqs
 
+    def __set_input_test(self, seqs):
+        self.test_x += seqs
+
     def __set_output_test(self, seqs):
         self.test_y += seqs
 
     def set_train(self, train_x, train_y):
+        """
+        method to setting train data
+        make IDs of token automatically
+        this method can be called many times to append data
+        lengths of train_x and train_y must be equall
+
+        Args:
+            train_x: input sequences, list of list of tokens
+            train_y: output sequences, list of list of tokens
+        """
         assert len(train_x)==len(train_y), ValueError('length of train_x and train_y must be equal')
         self.__set_input_train(train_x)
         self.__set_output_train(train_y)
@@ -73,6 +84,14 @@ class Data:
         self.output_maxlen = max(map(len, train_y)) + 5
 
     def set_test(self, test_x, test_y):
+        """
+        similar to set_train() but it DOES NOT make IDs
+        lengths of train_x and train_y must be equall
+
+        Args:
+            test_x: input sequences, list of list of tokens
+            test_y: output sequences, list of list of tokens
+        """
         assert len(test_x)==len(test_y), ValueError('length of test_x and test_y must be equal')
         self.__set_input_test(test_x)
         self.__set_output_test(test_y)

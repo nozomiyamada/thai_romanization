@@ -8,16 +8,17 @@ mainly focusing **End-to-End Model** that does not need other data and linguisti
 
 > original data
  
-- **3,801** distinct names with romanized annotations
+- **3,806** distinct names with romanized annotations
 - RTGS(Royal Thai General System of Transcription) and other variations
 - gender f/m
 
 > cleaned data
 
-- exclude ambiguous names e.g. **เอกรัฐ** : 'ekkarat' or 'ekrat'
-- **3,556** distinct names
-- train: **2,856** names (20% validation for preliminary train)
-- test : **700** names
+- **3,806** distinct names, **3,847** entries
+- some names are ambiguous e.g. **เอกรัฐ** : 'ekkarat' or 'ekrat'
+- use **3,766** non-ambiguous names
+- train: **3,012** names (20% validation for preliminary train)
+- test : **754** names
 
 > additional data
 
