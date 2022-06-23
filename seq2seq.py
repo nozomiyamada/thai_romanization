@@ -1,6 +1,7 @@
 import keras
 from keras import layers
 from tqdm import tqdm
+import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import plot_model, to_categorical
 import numpy as np
@@ -219,7 +220,7 @@ class Attention:
 
     def __call__(self, enc_output, dec_output):
         attention_dot = self.dot([dec_output, enc_output])
-        attention_weight = self.softmax(attention_dot)
+        attention_weight = self.softmax(tf.sqrt(attention_dot, name='SQRT'))
         context_vector = self.context([attention_weight, enc_output])
         concat_vector = self.concat([context_vector, dec_output])
         return self.hidden(concat_vector)
@@ -291,6 +292,7 @@ class Seq2Seq(__BaseModel):
             self.decoder_pred = keras.models.Model(
                                 inputs=[self.decoder.input, self.decoder.input_h, self.decoder.input_c],
                                 outputs=[x, h, c])
+        return self.model
 
     def show_model(self):
         plot_model(self.model, show_shapes=True,to_file='model.png')
@@ -309,6 +311,9 @@ class Seq2Seq(__BaseModel):
             self.history = history.history
         else:
             self.history = {k: v+history.history[k] for k,v in self.history.items()}
+        self.show_history()
+
+    def show_history(self):
         return pd.DataFrame(self.history).plot(xlabel='Epoch')
 
     def predict_one(self, input_seq:list, join_by=None, is_beam=False, beam_return_all=True, beam_depth=3):
@@ -396,3 +401,29 @@ class Seq2Seq(__BaseModel):
         for seq in tqdm(seqs):
             decoded.append(self.predict_one(seq, join_by=join_by, is_beam=is_beam, beam_return_all=beam_return_all, beam_depth=beam_depth))
         return decoded
+
+######################################################################################################################
+###   CLASS FOR TRANSFORMER
+######################################################################################################################
+
+class Transformer(__BaseModel):
+    def __init__(self, emb_dim=300, hidden_dim=128):
+        self.Q = layers.Dense(hidden_dim, name='Query') # (Batch, seq_len Q, emb_dim) -> (Batch, seq_len Q, hidden_dim)
+        self.K = layers.Dense(hidden_dim, name='Key')
+        self.V = layers.Dense(hidden_dim, name='Value')
+        self.dot_QK = layers.Dot(axes=[2,2], name='Dot_Query_Key') # (Batch, seq_len Q, dim) * (Batch, seq_len K, dim) -> weight (Batch, seq_len Q, seq_len K) 
+        self.softmax = layers.Activation(activation='softmax', name='Softmax') # weight
+        self.dot_V = layers.Dot(axes=[2,1], name='Dot_Value') # (Batch, seq_len, seq_len) * (Batch, seq_len , dim) -> context (Batch, seq_len, dim)
+        self.concat_Q = layers.Concatenate(name='Concat_Query') # concate context and original input (Batch, seq_len, dim*2)
+        self.hidden = layers.Dense(hidden_dim, activation='relu', name='Attn_hidden') # (Batch, seq_len, dim)
+        self.concat_hidden = layers.Concatenate(name='Concat_hidden') # (Batch, seq_len, hidden_dim+dim*2)
+        self.output_hidden = layers.Dense(name='Output_hidden') # (Batch, seq_len, emb_dim)
+        self
+
+    def __call__(self, transform_input): # input must be (batch, seq_len, emb_dim)
+        Q, K, V = 0,0,0
+        dot_QK = self.dot_QK([transform_input, transform_input])
+        weight = self.softmax(dot_QK)
+        context = self.dot_V([weight, transform_input])
+        concat_Q = self.concat_Q([context, transform_input])
+        return self.hidden(Q)
