@@ -2,6 +2,8 @@
 
 developing Seq2Seq model that can romanize Thai person name 
 
+mainly focusing **End-to-End Model**, namely it does not need other data and linguistic information except for input/output data
+
 ## Data
 
 > original data
