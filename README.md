@@ -2,6 +2,8 @@
 
 developing Seq2Seq model that can romanize Thai person name 
 
+mainly focusing **End-to-End Model** that does not need other data and linguistic information except for input/output data
+
 ## Data
 
 > original data
@@ -57,8 +59,8 @@ preliminary train with validation - no overfitting
 
 > Result of name data only
 
-||LSTM w/o|LSTM attention|tltk|
-|:-:|:-:|:-:|:-:|
-|WER|0.259259|0.156790|0.101235|
-|CER macro|0.075115|0.038668|0.013554|
-|CER micro|0.075955|0.038693|0.013101|
+||tltk|LSTM w/o|LSTM attention|LSTM w/o + dict|LSTM attention + dict|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|WER|0.101235|0.259259|0.156790|0.172840|0.108642|
+|CER macro|0.013554|0.075115|0.038668|0.043355|0.026617|
+|CER micro|0.013101|0.075955|0.038693|0.044962|0.028573|
