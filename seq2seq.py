@@ -1,5 +1,6 @@
 import keras
 from keras import layers
+from requests import head
 from tqdm import tqdm
 import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -20,7 +21,7 @@ class Data:
     def __init__(self, input2id=None, output2id=None):
         self.train_x, self.test_x = [], [] 
         self.train_y, self.test_y = [], []
-        self.input_maxlen, self.output_maxlen = 10, 10
+        self.maxlen_input, self.maxlen_output = 10, 10
         ##### DICT FOR INPUT/OUTPUT <> ID #####
         # if not use custom ID dictionary, this class will make dictionary from received train data
         if input2id == None:
@@ -81,8 +82,8 @@ class Data:
         assert len(train_x)==len(train_y), ValueError('length of train_x and train_y must be equal')
         self.__set_input_train(train_x)
         self.__set_output_train(train_y)
-        self.input_maxlen = max(map(len, train_x)) + 5
-        self.output_maxlen = max(map(len, train_y)) + 5
+        self.maxlen_input = max(map(len, train_x)) + 5
+        self.maxlen_output = max(map(len, train_y)) + 5
 
     def set_test(self, test_x, test_y):
         """
@@ -102,19 +103,19 @@ class Data:
         if seqs==None:
             seqs = self.train_x
         seqs = [[1]+[self.input2id.get(token, -1) for token in seq]+[2] for seq in seqs] # <sos> + seq + <eos>
-        return pad_sequences(seqs, padding='post', maxlen=self.input_maxlen, value=0)
+        return pad_sequences(seqs, padding='post', maxlen=self.maxlen_input, value=0)
 
     def make_decoder_input(self, seqs=None):
         if seqs==None:
             seqs = self.train_y
         seqs = [[1]+[self.output2id.get(token, -1) for token in seq] for seq in seqs] # <sos> + seq
-        return pad_sequences(seqs, padding='post', maxlen=self.output_maxlen, value=0)
+        return pad_sequences(seqs, padding='post', maxlen=self.maxlen_output, value=0)
 
     def make_decoder_output(self, seqs=None):
         if seqs==None:
             seqs = self.train_y
         seqs = [[self.output2id.get(token, -1) for token in seq]+[2] for seq in seqs] # seq + <eos>
-        seqs = pad_sequences(seqs, padding='post', maxlen=self.output_maxlen, value=0)
+        seqs = pad_sequences(seqs, padding='post', maxlen=self.maxlen_output, value=0)
         return to_categorical(seqs, num_classes=self.output_vocab) # one-hot vector
 
 ######################################################################################################################
@@ -125,26 +126,22 @@ class __BaseModel: # only for inheritance
     def build(self):
         raise NotImplementedError('method `bulid` must be implemented in subclass e.g. Encoder') 
 
-    def save_model(self, filepath):
+    def save(self, filepath):
         model = self.build()
-        with open(filepath, 'w') as f:
-            f.write(model.to_json()) 
+        model.save_weights(filepath)
 
-    @classmethod
-    def load_model(cls, architecture_file, weight_file, by_name=True):
-        with open(architecture_file) as f:
-            model = keras.models.model_from_json(f.read())
-        model.load_weights(weight_file, by_name=by_name)
-        return model
+    def load(self, weight_path):
+        self.model = self.build()
+        self.model.load_weights(weight_path)
 
 class Encoder(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=200, lstm_dropout=0.2, return_seq=False): # must return seq when use attention
+    def __init__(self, data:Data, emb_dim=256, lstm_dim=128, lstm_dropout=0.2, return_seq=False): # must return seq when use attention
         self.lstm_dim = lstm_dim
         self.data = data
         ### Layers
-        self.input = layers.Input(batch_size=None, shape=(data.input_maxlen,), name='Enc_Input')
+        self.input = layers.Input(batch_size=None, shape=(data.maxlen_input,), name='Enc_Input')
         self.embedding = layers.Embedding(input_dim = data.input_vocab, # num of vocab = num of ID dict
-                                    input_length = data.input_maxlen,
+                                    input_length = data.maxlen_input,
                                     output_dim = emb_dim,
                                     mask_zero = True,
                                     name = 'Enc_Embedding')
@@ -170,15 +167,15 @@ class Encoder(__BaseModel):
         return model
 
 class Decoder(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=400, lstm_dropout=0.2):
+    def __init__(self, data:Data, emb_dim=256, lstm_dim=256, lstm_dropout=0.2):
         self.lstm_dim = lstm_dim
         self.data = data
         ### Layers
-        self.input = layers.Input(batch_size=None, shape=(data.output_maxlen,), name='Dec_Input')
+        self.input = layers.Input(batch_size=None, shape=(data.maxlen_output,), name='Dec_Input')
         self.input_h = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_h') # for predict
         self.input_c = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_c') # for predict
         self.embedding = layers.Embedding(input_dim = data.output_vocab,
-                                    input_length = data.output_maxlen,
+                                    input_length = data.maxlen_output,
                                     output_dim = emb_dim,
                                     mask_zero = True,
                                     name = 'Dec_Embedding')
@@ -211,24 +208,26 @@ class Decoder(__BaseModel):
 ######################################################################################################################
 
 class Attention:
-    def __init__(self, unit=300):
-        self.dot = layers.Dot(axes=[2,2], name='Attn_Dot') # (Batch, dec_seq_length, "lstm_dim") * (Batch, enc_seq_length, "lstm_dim") -> weight (Batch, dec_seq_length, enc_seq_length) 
+    def __init__(self, unit=256, emb_dim=256):
+        self.dot = layers.Dot(axes=[2,2], name='Attn_Dot') # (batch, dec_seq_length, "lstm_dim") * (batch, enc_seq_length, "lstm_dim") -> weight (batch, dec_seq_length, enc_seq_length) 
+        #self.sqrt = layers.Lambda(lambda x: x/emb_dim**0.5, name='Sqrt') # scaling by square root : */√dim
         self.softmax = layers.Activation(activation='softmax', name='Attn_Softmax')
-        self.context = layers.Dot(axes=[2,1], name='Attn_Context') # weight (Batch, dec_seq_length, "enc_seq_length") * (Batch, "enc_seq_length", dim) -> (Batch, dec_seq_length, dim)
+        self.context = layers.Dot(axes=[2,1], name='Attn_Context') # weight (batch, dec_seq_length, "enc_seq_length") * (batch, "enc_seq_length", dim) -> (batch, dec_seq_length, dim)
         self.concat = layers.Concatenate(name='Attn_Concat') # concate context and decoder output
         self.hidden = layers.Dense(unit, activation='tanh', name='Attn_hidden')
 
     def __call__(self, enc_output, dec_output):
         attention_dot = self.dot([dec_output, enc_output])
-        attention_weight = self.softmax(tf.sqrt(attention_dot, name='SQRT'))
+        #attention_weight = self.softmax(self.sqrt(attention_dot))
+        attention_weight = self.softmax(attention_dot)
         context_vector = self.context([attention_weight, enc_output])
         concat_vector = self.concat([context_vector, dec_output])
         return self.hidden(concat_vector)
 
 class AttentionDecoder(Decoder):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=400, lstm_dropout=0.2, attention_dim=300):
+    def __init__(self, data:Data, emb_dim=256, lstm_dim=256, lstm_dropout=0.2, attention_dim=256):
         super().__init__(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim, lstm_dropout=lstm_dropout)
-        self.attention = Attention(unit=attention_dim)
+        self.attention = Attention(unit=attention_dim, emb_dim=emb_dim)
         self.enc_output = layers.Input(batch_size=None, shape=(lstm_dim), name='Enc_Output')
     
     def __call__(self, state_h, state_c, enc_output=None):
@@ -249,7 +248,7 @@ class AttentionDecoder(Decoder):
 ######################################################################################################################
 
 class Seq2Seq(__BaseModel):
-    def __init__(self, data:Data, emb_dim=300, lstm_dim=200, lstm_dropout=0.2, attention=False, attention_dim=300):
+    def __init__(self, data:Data, emb_dim=256, lstm_dim=128, lstm_dropout=0.2, attention=False, attention_dim=256):
         if not attention:
             self.encoder = Encoder(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim, lstm_dropout=lstm_dropout, return_seq=False)
             self.decoder = Decoder(data=data, emb_dim=emb_dim, lstm_dim=lstm_dim*2, lstm_dropout=lstm_dropout)
@@ -294,6 +293,9 @@ class Seq2Seq(__BaseModel):
                                 outputs=[x, h, c])
         return self.model
 
+    def summary(self):
+        self.model.summary()
+
     def show_model(self):
         plot_model(self.model, show_shapes=True,to_file='model.png')
         display_png(Image('model.png'))
@@ -321,7 +323,7 @@ class Seq2Seq(__BaseModel):
             input_seq = [input_seq] # input must be 2D
         input_seq = self.data.make_encoder_input(input_seq) # convert to ID
         enc_output, h, c = self.encoder_pred.predict(input_seq, verbose=0) # verbose=0: not print
-        target_seq = np.zeros((1, self.data.output_maxlen)) # generate target seq of length 1 e.g. [[5,0,0,0,0,...]]
+        target_seq = np.zeros((1, self.data.maxlen_output)) # generate target seq of length 1 e.g. [[5,0,0,0,0,...]]
         target_seq[0,0] = 1 # <sos> ID=1
 
         # Sampling loop for a batch of sequences
@@ -344,11 +346,11 @@ class Seq2Seq(__BaseModel):
                 output_ids, h, c = get_next_output(target_seq, h, c) # h, c are overwrited
                 sampled_id= np.argmax(output_ids[0, -1, :])
                 
-                if (sampled_id == 2 or len(sampled_seq) > self.data.output_maxlen): # stop if <eos>=2
+                if (sampled_id == 2 or len(sampled_seq) > self.data.maxlen_output): # stop if <eos>=2
                     stop_condition = True
                 else:
                     sampled_seq.append(sampled_id)
-                target_seq = np.zeros((1, self.data.output_maxlen)) # update the target sequence (of length 1).
+                target_seq = np.zeros((1, self.data.maxlen_output)) # update the target sequence (of length 1).
                 target_seq[0, 0] = sampled_id 
 
             ### sampling for beam search ###
@@ -360,14 +362,14 @@ class Seq2Seq(__BaseModel):
                     probs = output_ids[0, -1, :][sampled_ids]
                     sampled_seq = [[[i], np.log(prob), h, c] for i, prob in zip(sampled_ids, probs)]
                 else:
-                    if all([x[0][-1]==2 for x in sampled_seq]) or all([len(x[0]) >= self.data.output_maxlen for x in sampled_seq]): # if all 3 seq end with <eos>=2
+                    if all([x[0][-1]==2 for x in sampled_seq]) or all([len(x[0]) >= self.data.maxlen_output for x in sampled_seq]): # if all 3 seq end with <eos>=2
                         break
                     candidates = [] # beam_depth*beam_depth candidates
                     for seq_now, prob_now, h_now, c_now in sampled_seq: # e.g. [[3,10,4], ΣlogP, h, c]
                         if seq_now[-1]==2: # if ends with <eos>, add to candidates and skip
                             candidates.append([seq_now, prob_now, h_now, c_now])
                             continue
-                        target_seq = np.zeros((1, self.data.output_maxlen))
+                        target_seq = np.zeros((1, self.data.maxlen_output))
                         target_seq[0, 0] = seq_now[-1] # the last id
                         output_ids, h, c = get_next_output(target_seq, h_now, c_now)
                         sampled_ids= np.argpartition(output_ids[0, -1, :], -beam_depth)[-beam_depth:] # args of 3 max values
@@ -406,24 +408,79 @@ class Seq2Seq(__BaseModel):
 ###   CLASS FOR TRANSFORMER
 ######################################################################################################################
 
-class Transformer(__BaseModel):
-    def __init__(self, emb_dim=300, hidden_dim=128):
-        self.Q = layers.Dense(hidden_dim, name='Query') # (Batch, seq_len Q, emb_dim) -> (Batch, seq_len Q, hidden_dim)
-        self.K = layers.Dense(hidden_dim, name='Key')
-        self.V = layers.Dense(hidden_dim, name='Value')
-        self.dot_QK = layers.Dot(axes=[2,2], name='Dot_Query_Key') # (Batch, seq_len Q, dim) * (Batch, seq_len K, dim) -> weight (Batch, seq_len Q, seq_len K) 
-        self.softmax = layers.Activation(activation='softmax', name='Softmax') # weight
-        self.dot_V = layers.Dot(axes=[2,1], name='Dot_Value') # (Batch, seq_len, seq_len) * (Batch, seq_len , dim) -> context (Batch, seq_len, dim)
-        self.concat_Q = layers.Concatenate(name='Concat_Query') # concate context and original input (Batch, seq_len, dim*2)
-        self.hidden = layers.Dense(hidden_dim, activation='relu', name='Attn_hidden') # (Batch, seq_len, dim)
-        self.concat_hidden = layers.Concatenate(name='Concat_hidden') # (Batch, seq_len, hidden_dim+dim*2)
-        self.output_hidden = layers.Dense(name='Output_hidden') # (Batch, seq_len, emb_dim)
-        self
+class PositionalEncoding(__BaseModel):
+    def __init__(self, seq_len, output_dim=128, n=10000):
+        self.seq_len = seq_len
+        self.output_dim = output_dim
+        self.n = n
 
-    def __call__(self, transform_input): # input must be (batch, seq_len, emb_dim)
-        Q, K, V = 0,0,0
-        dot_QK = self.dot_QK([transform_input, transform_input])
-        weight = self.softmax(dot_QK)
-        context = self.dot_V([weight, transform_input])
-        concat_Q = self.concat_Q([context, transform_input])
-        return self.hidden(Q)
+    def __call__(self):
+        P = np.zeros((self.seq_len, self.output_dim))
+        for k in range(self.seq_len):
+            for i in np.arange(int(d/2)):
+                denominator = np.power(self.n, 2*i/self.output_dim)
+                P[k, 2*i] = np.sin(k/denominator)
+                P[k, 2*i+1] = np.cos(k/denominator)
+        return P
+
+
+class SingleTransformer(__BaseModel):
+    def __init__(self, data, emb_dim=256, hidden_dim=128, head_num=4, dropout_rate=0.2):
+        self.data = data
+        self.seq_len = data.maxlen_input
+        self.emb_dim = emb_dim
+        self.hidden_dim = hidden_dim
+        self.head_num = head_num
+        assert emb_dim % head_num == 0, ValueError('emb_dim must be multiple of head_num')
+        ### LAYERS ###
+        self.input = layers.Input(batch_size=None, shape=(self.seq_len, emb_dim), name='Input') # input must be (batch, seq_len, emb_dim)
+        self.split = layers.Lambda(self._split_head, output_shape=(head_num, self.seq_len, emb_dim//head_num), name='Split_Head') # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len Q, emb_dim//head_num)
+        self.Q = layers.Dense(hidden_dim, activation='relu', name='Query') # (batch, head_num, seq_len, emb_dim) -> (batch, head_num, seq_len, hidden_dim)
+        self.K = layers.Dense(hidden_dim, activation='relu', name='Key')
+        self.V = layers.Dense(hidden_dim, activation='relu', name='Value')
+        self.sqrt = layers.Lambda(lambda x: x/hidden_dim**0.5, name='Sqrt') # scaling by square root : */√dim
+        self.softmax = layers.Activation(activation='softmax', name='Softmax') # weight
+        self.dropout = layers.Dropout(dropout_rate, name='Dropout')
+        #self.concat_Q = layers.Concatenate(name='Concat_Query') # concate context and value (batch, seq_len, dim*2)     
+        self.combine = layers.Lambda(self._combine_head, output_shape=(self.seq_len, hidden_dim*head_num), name='Combine_Head') # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
+        self.output_hidden = layers.Dense(emb_dim, activation='relu',name='Output_hidden') # (batch, seq_len, emb_dim)
+        self.normalize = layers.BatchNormalization(name='normalize')
+
+    def _split_head(self, input_tensor):
+        '''
+        split input embbeding into multi head
+        input shape: (batch, seq_len, emb_dim) -> output shape: (batch, head_num, seq_len, emb_dim//head_num)
+        '''
+        batch_size, seq_length, emb_dim = tf.unstack(tf.shape(input_tensor))
+        input_tensor = tf.reshape(input_tensor, [batch_size, self.seq_len, self.head_num, self.emb_dim // self.head_num])
+        return tf.transpose(input_tensor, [0, 2, 1, 3])
+
+    def _combine_head(self, input_tensor):
+        '''
+        combine output of multi head
+        input shape: (batch, head_num, seq_len, emb_dim//head_num) -> output shape: (batch, seq_len, emb_dim)
+        '''
+        batch_size, head_num, seq_length, splitted_dim = tf.unstack(tf.shape(input_tensor))
+        input_tensor = tf.transpose(input_tensor, [0, 2, 1, 3])
+        print(input_tensor)
+        return tf.reshape(input_tensor, [batch_size, self.seq_len, self.hidden_dim])
+
+    def __call__(self): 
+        input_tensor = self.input 
+        splitted = self.split(input_tensor) # (batch, seq_len Q, emb_dim) -> (batch, head_num, seq_len Q, emb_dim)
+        Q, K, V = self.Q(splitted), self.K(splitted), self.V(splitted) # (batch, head_num, seq_len Q, emb_dim) -> (batch, head_num, seq_len Q, hidden_dim)
+        dot_QK = tf.matmul(Q, K, transpose_b=True, name='Dot_QK') # (batch, head_num, seq_lenQ, dim) * (batch, head_num, seq_lenK, dim) -> weight (batch, head_num, seq_lenQ, seq_lenK) 
+        weight = self.dropout(self.softmax(self.sqrt(dot_QK))) # scaling & softmax
+        context = tf.matmul(weight, V, transpose_b=False, name='Dot_Value') # (batch, head_num, seq_lenQ, seq_lenK) * (batch, head_num, seq_lenV, dim) -> context (batch, head_num, seq_len, dim)
+        #context = self.concat_Q([context, Q])
+        output = self.output_hidden(self.combine(context)) # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
+        return self.normalize(output)
+
+    def build(self):
+        output = self()
+        model = keras.models.Model(self.input, output)
+        return model
+
+class Transformers(__BaseModel):
+    def __init__(self, data, repeat=3, emb_dim=256, hidden_dim=256, head_num=4, dropout_rate=0.2):
+        self.data = data
