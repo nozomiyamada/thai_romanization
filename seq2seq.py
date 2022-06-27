@@ -50,14 +50,14 @@ class Data:
     ##### SET DATA #####
     def __set_input_train(self, seqs): # seqs: list of list of str  e.g. [['I','eat'],['He','goes']]
         for seq in seqs:
-            for token in set(seq) - set(self.input2id.keys()): # only tokens not in dict
+            for token in sorted(set(seq) - set(self.input2id.keys())): # only tokens not in dict
                 self.input2id[token] = max(self.input2id.values()) + 1 # {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} -> next ID is 3
         self.__inverse_id_input()
         self.train_x += seqs
 
     def __set_output_train(self, seqs): # seqs: list of list of str
         for seq in seqs:
-            for token in set(seq) - set(self.output2id.keys()): # only tokens not in dict
+            for token in sorted(set(seq) - set(self.output2id.keys())): # only tokens not in dict
                 self.output2id[token] = max(self.output2id.values()) + 1 # {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} -> next ID is 3
         self.__inverse_id_output()
         self.train_y += seqs
@@ -375,7 +375,8 @@ class Seq2Seq(__BaseModel):
                         sampled_ids= np.argpartition(output_ids[0, -1, :], -beam_depth)[-beam_depth:] # args of 3 max values
                         probs = output_ids[0, -1, :][sampled_ids]
                         candidates += [[seq_now+[i], prob_now+np.log(prob), h, c] for i, prob in zip(sampled_ids, probs)]
-                    sampled_seq = sorted(candidates, key=lambda x: x[1], reverse=True)[:beam_depth] # only 3 max prob
+                    #sampled_seq = sorted(candidates, key=lambda x: x[1], reverse=True)[:beam_depth] # only 3 max prob
+                    sampled_seq = sorted(candidates, key=lambda x: x[1]/len(x[0]), reverse=True)[:beam_depth] # only 3 max prob, normalized by seq length
                     #print([x[:2] for x in sampled_seq])
         
         ### Decode ###
