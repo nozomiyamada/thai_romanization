@@ -17,8 +17,8 @@ mainly focusing **End-to-End Model** that does not need other data and linguisti
 - **3,806** distinct names, **3,847** entries
 - some names are ambiguous e.g. **เอกรัฐ** : 'ekkarat' or 'ekrat'
 - use **3,766** non-ambiguous names
-- train: **3,012** names (20% validation for preliminary train)
-- test : **754** names
+- train: **3,066** names (20% validation for preliminary train)
+- test : **700** names
 
 > additional data
 
@@ -49,8 +49,8 @@ encoder: BiLSTM, decoder: LSTM
 
 ## Inference
 
-1. greedy search
-2. beam search : keep 3 most probable candidates
+1. Greedy Search
+2. Beam Search : keep 3 most probable candidates
 
 ## Result
 
@@ -58,10 +58,18 @@ preliminary train with validation - no overfitting
 
 ![loss](https://user-images.githubusercontent.com/44984892/174543126-0d9923db-9dd9-4c58-bcb0-92e152c2b7b7.png)
 
-> Result of name data only
+> Result of Greedy Search
 
-||tltk|LSTM w/o|LSTM attention|LSTM w/o + dict|LSTM attention + dict|
+||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|
 |:-:|:-:|:-:|:-:|:-:|:-:|
-|WER|0.101235|0.259259|0.156790|0.172840|0.108642|
-|CER macro|0.013554|0.075115|0.038668|0.043355|0.026617|
-|CER micro|0.013101|0.075955|0.038693|0.044962|0.028573|
+|WER|**0.090782**|0.259259|0.156790|0.122905|**0.090782**|
+|CER macro|**0.012128**|0.075115|0.038668|0.035918|0.024459|
+|CER micro|**0.012049**|0.075955|0.038693|0.036534|0.024111|
+
+> Result of Beam Search (tltk has no beam search)
+
+||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|WER|**0.090782**|0.259259|0.156790|0.117318|**0.090782**|
+|CER macro|**0.012128**|0.075115|0.038668|0.033874|0.023728|
+|CER micro|**0.012049**|0.075955|0.038693|0.034186|0.023680|
