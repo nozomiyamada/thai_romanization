@@ -53,7 +53,7 @@ mainly focusing **End-to-End Model** that does not need other data and linguisti
 > #### output
 
 1. **syllable token** - one syllable is one token (treated as vocab) 
-e.g. สมใจ -> `["som5", "jai1"]`
+e.g. สมใจ -> `["som5", "jai1"]`a
 2. **phoneme** - one syllable consists of `(onset, vowel, coda, tone)`
 e.g. สมใจ -> `[('s', 'o', 'm', 5), ('j', 'a', 'i', 1)]`
 decoder has 4 inputs/outpus
