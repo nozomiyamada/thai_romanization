@@ -90,11 +90,11 @@ preliminary train with validation - no overfitting
 
 > Result of Greedy Search
 
-||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|LSTM attention, syl token|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|WER|**0.090782**|0.259259|0.156790|0.122905|**0.090782**|0.215|
-|CER macro|**0.012128**|0.075115|0.038668|0.035918|0.024459|0.073|
-|CER micro|**0.012049**|0.075955|0.038693|0.036534|0.024111|0.073|
+||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|LSTM attention, syl token|Transformers(5)|Transformers(5) + dict|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|WER|**0.090782**|0.259259|0.156790|0.122905|**0.090782**|0.215|0.123|0.051|
+|CER macro|**0.012128**|0.075115|0.038668|0.035918|0.024459|0.073|0.034|0.018|
+|CER micro|**0.012049**|0.075955|0.038693|0.036534|0.024111|0.073|0.034|0.018|
 
 > Result of Beam Search (tltk has no beam search)
 
