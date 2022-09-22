@@ -7,6 +7,9 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.utils import plot_model, to_categorical
 import numpy as np
 
+## import fixed index
+from thai_romanize_utils import THAI2INDEX, ROMAN2INDEX 
+
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 from IPython.display import Image, display_png
@@ -18,20 +21,31 @@ from tensorflow.keras.utils import plot_model
 ######################################################################################################################
 
 class Data:
-    def __init__(self, input2id=None, output2id=None):
+    """
+    class for creating dataset for Seq2Seq
+
+        Parameters in instantiation:
+            input2id_dict : a dictionary that maps input tokens to index
+            output2id_dict : a dictionary that maps output tokens to index
+
+            In both dictionaied, must assign fixed indices {'<PAD>':0, '<SOS>':1, '<EOS>':2}
+            If input2id == None, 
+
+    """
+    def __init__(self, input2id_dict=THAI2INDEX, output2id_dict=ROMAN2INDEX):
         self.train_x, self.test_x = [], [] 
         self.train_y, self.test_y = [], []
         self.maxlen_input, self.maxlen_output = 10, 10
         ##### DICT FOR INPUT/OUTPUT <> ID #####
         # if not use custom ID dictionary, this class will make dictionary from received train data
-        if input2id == None:
+        if input2id_dict == None:
             self.input2id = {'<UNK>':-1,'<PAD>':0,'<SOS>':1,'<EOS>':2} # UNK=unknown, SOS=start of sequence, EOS=end of sequence
         else:
-            self.input2id = input2id     
-        if output2id == None:
+            self.input2id = input2id_dict     
+        if output2id_dict == None:
             self.output2id = {'<UNK>':-1,'<PAD>':0, '<SOS>':1,'<EOS>':2}
         else:
-            self.output2id = output2id
+            self.output2id = output2id_dict
         self.__inverse_id_input()
         self.__inverse_id_output()
     
@@ -134,6 +148,10 @@ class __BaseModel: # only for inheritance
         self.model = self.build()
         self.model.load_weights(weight_path)
 
+    def show_model(self, filepath='model.png'):
+        plot_model(self.model, show_shapes=True, to_file=filepath)
+        display_png(Image('model.png'))
+
 class Encoder(__BaseModel):
     def __init__(self, data:Data, emb_dim=256, lstm_dim=128, lstm_dropout=0.2, return_seq=False): # must return seq when use attention
         self.lstm_dim = lstm_dim
@@ -154,12 +172,11 @@ class Encoder(__BaseModel):
         self.concat_c = layers.Concatenate(name='Concat_c') # concatnate bidirectional output of state c
 
     def __call__(self):
-        x = self.input
-        x = self.embedding(x)
+        x = self.embedding(self.input)
         x, h1, c1, h2, c2 = self.lstm(x)
-        h = self.concat_h([h1, h2])
-        c = self.concat_c([c1, c2])
-        return x, h, c
+        state_h = self.concat_h([h1, h2])
+        state_c = self.concat_c([c1, c2])
+        return x, state_h, state_c
 
     def build(self):
         x, h, c = self()
@@ -172,8 +189,8 @@ class Decoder(__BaseModel):
         self.data = data
         ### Layers
         self.input = layers.Input(batch_size=None, shape=(data.maxlen_output,), name='Dec_Input')
-        self.input_h = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_h') # for predict
-        self.input_c = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_c') # for predict
+        self.input_h = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_h') # only for predict
+        self.input_c = layers.Input(batch_size=None, shape=(lstm_dim,), name='Dec_Input_c') # only for predict
         self.embedding = layers.Embedding(input_dim = data.output_vocab,
                                     input_length = data.maxlen_output,
                                     output_dim = emb_dim,
@@ -191,9 +208,8 @@ class Decoder(__BaseModel):
         self.input_h = layers.Input(shape=lstm_dim, name='Dec_Input_h')
         self.input_c = layers.Input(shape=lstm_dim, name='Dec_Input_c')
 
-    def __call__(self, state_h, state_c, enc_output=None):
-        x = self.input
-        x = self.embedding(x)
+    def __call__(self, state_h, state_c):
+        x = self.embedding(self.input)
         x, h, c = self.lstm(x, initial_state=[state_h, state_c])
         x = self.dense(x)
         return x, h, c
@@ -264,7 +280,7 @@ class Seq2Seq(__BaseModel):
         ### MODEL FOR TRAIN ###
         enc_output, enc_h, enc_c = self.encoder() # if w/o attention, discard enc_output, use only state
         if not self.is_attention:
-            dec_output, dec_h, dec_c = self.decoder(state_h=enc_h, state_c=enc_c)
+            dec_output, dec_h, dec_c = self.decoder(state_h=enc_h, state_c=enc_c) # without attention
         else:
             dec_output, dec_h, dec_c = self.decoder(state_h=enc_h, state_c=enc_c, enc_output=enc_output)
 
@@ -295,10 +311,6 @@ class Seq2Seq(__BaseModel):
 
     def summary(self):
         self.model.summary()
-
-    def show_model(self):
-        plot_model(self.model, show_shapes=True,to_file='model.png')
-        display_png(Image('model.png'))
     
     def train(self, batch_size=100, epoch=20, dev_split=0.2):
         if len(self.input_x) == 0:
@@ -317,6 +329,8 @@ class Seq2Seq(__BaseModel):
 
     def show_history(self):
         return pd.DataFrame(self.history).plot(xlabel='Epoch')
+
+    ########## PREDICT ##########
 
     def predict_one(self, input_seq:list, join_by=None, is_beam=False, beam_return_all=True, beam_depth=3):
         if type(input_seq[0]) == str:

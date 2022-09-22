@@ -21,14 +21,14 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ขวัญนภา,f,Kwan5 na-4 PA-1,khwannapha,khwannapa,kwannapha
 ขวัญรัตน์,f,Kwan5 rat4,khwanrat,kwanrat,
 ขวัญฤดี,f,Kwan5 rv-4 dI-1,khwanruedi,khwanruedee,kwanruedee
-ขวัญศิริ,f,Kwan5 si-2 ri-2,khwansiri,khwansiree,kwansiree
+ขวัญศิริ,f,Kwan5 si-1 ri?4,khwansiri,khwansiree,kwansiree
 ขวัญสุดา,f,Kwan5 su-2 dA-1,khwansuda,kwansuda,
 ขวัญหล้า,f,Kwan5 lA-3,khwanla,khwanlar,kwanla
 ขวัญเดือน,f,Kwan5 dWn1,khwanduean,khwanduen,kwanduean
 ขวัญเรือน,f,Kwan5 rWn1,khwanruean,khwanruen,kwanruen
 ขัตติยา,f,Kat2 ti-2 jA-1,khattiya,kattiya,
 ขันคำ,f,Kan5 Kam1,khankham,khankam,
-ขันติ,m,Kan5 ti-2,khanti,,
+ขันติ,m,Kan5 ti?2,khanti,,
 คงคา,m,KoN1 KA-1,khongkha,khongka,kongka
 คงฤทธิ์,m,KoN1 rit4,khongrit,kongrit,
 คงศักดิ์,m,KoN1 sak2,khongsak,kongsak,
@@ -59,8 +59,8 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ครรชิต,m,Kan1 Cit4,khanchit,kanchit,
 ครรชิตพล,m,Kan1 Cit4 Pon1,khanchitphon,kanchitpon,khanchitpol
 คริษฐา,f,Ka-1 rit4 TA-5,kharittha,karitta,karittha
-คอรีเยาะ,f,KX-1 rI-1 jx-4,khoriyo,khoriyoh,koriyoh
-คอลีเยาะ,f,KX-1 lI-1 jx-4,kholiyo,kholiyoh,koliyoh
+คอรีเยาะ,f,KX-1 rI-1 jx?4,khoriyo,khoriyoh,koriyoh
+คอลีเยาะ,f,KX-1 lI-1 jx?4,kholiyo,kholiyoh,koliyoh
 คะนอง,m,Ka-1 nXN1,khanong,kanong,
 คัมภีร์,m,Kam1 PI-1,khamphi,khamphee,kamphee
 คามิน,m,KA-1 min1,khamin,kamin,camin
@@ -170,7 +170,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 จิตตรา,f,cit2 trA-1,chittra,jittra,
 จิตตา,f,cit2 tA-1,chitta,jitta,
 จิตตานันท์,f,cit2 tA-1 nan1,chittanan,jittanan,jittanun
-จิตติ,m,cit2 ti-2,chitti,jitti,
+จิตติ,m,cit2 ti?2,chitti,jitti,
 จิตติกร,m,cit2 ti-2 kXn1,chittikon,jittikorn,chittikorn
 จิตติพงษ์,m,cit2 ti-2 PoN1,chittiphong,jittiphong,jittipong
 จิตภินันท์,f,cit2 Pi-4 nan1,chitphinan,jitphinan,jitpinan
@@ -296,7 +296,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ชนพัฒน์,m,Con1 na-1 Pat4,chonnaphat,chonnapat,
 ชนมณี,f,Con1 ma-1 nI-1,chonmani,chonmanee,
 ชนวีร์,m,Ca-4 na-4 wI-1,chanawi,chanawee,chanavee
-ชนะ,m,Ca-1 na-4,chana,,
+ชนะ,m,Ca-1 na?4,chana,,
 ชนะชล,m,Ca-1 na-4 Con1,chanachon,chanachol,
 ชนะชัย,m,Ca-1 na-4 Caj1,chanachai,,
 ชนะพล,m,Ca-1 na-4 Pon1,chanaphon,chanapol,chanaphol
@@ -361,7 +361,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ชัญญาภัค,f,Can1 jA-1 Pak4,chanyaphak,chunyapak,chunyaphak
 ชัด,m,Cat4,chat,chad,
 ชัดชัย,m,Cat4 Caj1,chatchai,chutchai,chadchai
-ชัยชนะ,m,Caj1 Ca-1 na-4,chaichana,,
+ชัยชนะ,m,Caj1 Ca-1 na?4,chaichana,,
 ชัยญา,m,Caj1 jA-1,chaiya,,
 ชัยณรงค์,m,Caj1 na-1 roN1,chainarong,,
 ชัยทัศน์,m,Caj1 Tat4,chaithat,chaitat,chaitas
@@ -379,7 +379,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ชัยภูมิ,m,Caj1 ja-1 PUm1,chaiyaphum,chaiyapoom,chaiyaphoom
 ชัยมงคล,m,Caj1 moN1 Kon1,chaimongkhon,chaimongkon,chaimongkol
 ชัยยงค์,m,Caj1 joN1,chaiyong,,
-ชัยยะ,m,Caj1 ja-1,chaiya,,
+ชัยยะ,m,Caj1 ja?4,chaiya,,
 ชัยยันต์,m,Caj1 jan1,chaiyan,chaiyun,
 ชัยยุทธ,m,Caj1 jut4,chaiyut,chaiyuth,
 ชัยรัตน์,m,Caj1 ja-1 rat4,chaiyarat,chaiyarut,
@@ -428,7 +428,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ชินวัตร,m,Cin1 na-1 wat4,chinnawat,,
 ชินวุฒิ,m,Cin1 na-1 wut4,chinnawut,,
 ชินโชติ,m,Cin1 na-1 COt3,chinnachot,chinnachote,chinnachod
-ชิษณุ,m,Cit4 sa-1 nu-4,chitsanu,,
+ชิษณุ,m,Cit4 sa-1 nu?4,chitsanu,,
 ชิษณุพงศ์,m,Cit4 sa-1 nu-4 PoN1,chitsanuphong,chitsanupong,
 ชิษณุพงษ์,m,Cit4 sa-1 nu-4 PoN1,chitsanuphong,chitsanupong,
 ชิษนุชา,m,Cit4 sa-1 nu-4 CA-1,chitsanucha,,
@@ -465,7 +465,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ช่อผกา,f,CX-3 Pa-1 kA-1,chophaka,chorphaka,chorpaka
 ช่อลัดดา,f,CX-3 lat4 dA-1,cholatda,chorlatda,chorladda
 ซอบรี,m,sX-1 brI-1,sobri,sobree,
-ซอฟียะห์,f,sX-1 fI-1 ja-4,sofiya,sofiyah,sorfiyah
+ซอฟียะห์,f,sX-1 fI-1 ja?4,sofiya,sofiyah,sorfiyah
 ซัมรี,m,sam1 rI-1,samri,samree,
 ซารีนา,f,sA-1 rI-1 nA-1,sarina,sareena,
 ซุลกิฟลี,m,sun1 kip2 lI-1,sunkipli,sunkiflee,
@@ -494,7 +494,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ฐายิกา,f,TA-5 ji-4 kA-1,thayika,tayika,
 ฐิตาภา,f,Ti-2 tA-1 PA-1,thitapha,thitapa,
 ฐิตารีย์,f,Ti-2 tA-1 rI-1,thitari,thitaree,
-ฐิติ,m,Ti-2 ti-2,thiti,thiti,
+ฐิติ,m,Ti-2 ti?2,thiti,thiti,
 ฐิติกร,m,Ti-2 ti-2 kXn1,thitikon,thitikorn,
 ฐิติกาญจน์,f,Ti-2 ti-2 kAn1,thitikan,thitikarn,
 ฐิติพงษ์,m,Ti-2 ti-2 PoN1,thitiphong,thitipong,
@@ -637,7 +637,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ดาวนภา,f,dAw1 na-4 PA-1,daonapha,daonapa,
 ดาหวัน,f,dA-1 wan5,dawan,dahwan,
 ดาเรศ,f,dA-1 rEt3,daret,dares,
-ดาโอะ,m,dA-1 ?o-2,dao,daw,
+ดาโอะ,m,dA-1 ?o?2,dao,daw,
 ดำรง,m,dam1 roN1,damrong,dhumrong,dumrong
 ดำรงค์,m,dam1 roN1,damrong,dhumrong,dumrong
 ดำรงค์ชัย,m,dam1 roN1 Caj1,damrongchai,dhumrongchai,dumrongchai
@@ -646,7 +646,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ดำรงฤทธิ์,m,dam1 roN1 rit4,damrongrit,dumrongrit,
 ดำรงศักดิ์,m,dam1 roN1 sak2,damrongsak,dumrongsak,
 ดำรัส,m,dam1 rat2,damrat,dumras,damras
-ดำริ,m,dam1 ri-2,damri,dumri,
+ดำริ,m,dam1 ri?4,damri,dumri,
 ดิเรก,m,di-2 rEk2,direk,direg,
 ดือราแม,m,dV-1 rA-1 mY-1,dueramae,,
 ดุจฤดี,f,dut2 rv-4 dI-1,dutruedi,dujruedee,dutruedee
@@ -667,7 +667,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ติ๋ม,f,tim5,tim,,
 ตุลยวัต,m,tun1 ja-1 wat4,tunyawat,tunyawad,
 ตุลยวัต,m,tun1 la-1 ja-1 wat4,tunlayawat,tunlayawad,
-ตุลยา,f,tun1 la-1 ja-1,tunlaya,,
+ตุลยา,f,tun1 la-1 jA-1,tunlaya,,
 ตุ๊กตา,f,tuk4 tA-1,tukta,,
 ต่อพงศ์,m,tX-2 PoN1,tophong,torpong,torphong
 ต่อพงษ์,m,tX-2 PoN1,tophong,torpong,torphong
@@ -685,7 +685,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ถวัลย์,m,Ta-1 wan5,thawan,thawal,
 ถิรนันท์,f,Ti-2 ra-1 nan1,thiranan,thiranun,
 ถิรวัฒน์,m,Ti-2 ra-1 wat4,thirawat,thirawad,
-ถิรายุ,m,Ti-2 ra-1 ju-4,thirayu,thilayu,
+ถิรายุ,m,Ti-2 ra-1 ju?4,thirayu,thilayu,
 ถิรเดช,m,Ti-2 ra-1 det2,thiradet,thiradech,thiradetch
 ทนง,m,Ta-1 noN1,thanong,tanong,
 ทนงค์,m,Ta-1 noN1,thanong,tanong,
@@ -697,11 +697,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ทรงยศ,m,soN1 jot4,songyot,songyos,
 ทรงวิทย์,m,soN1 wit4,songwit,songwid,
 ทรงวุฒิ,m,soN1 wut4,songwut,songwud,
-ทรงศรี,f,soN1 srI-5,songsri,songsi,songsee
-ทรงศิริ,f,soN1 si-2 ri-2,songsiri,,
+ทรงศรี,f,soN1 sI-5,songsri,songsi,songsee
+ทรงศิริ,f,soN1 si-2 ri?4,songsiri,,
 ทรงศิลป์,m,soN1 sin5,songsin,songsilp,
 ทรงสิทธิ์,m,soN1 sit2,songsit,songsid,
-ทรรศนะ,m,tat5 sa-1 na-4,tatsana,tadsana,tassana
+ทรรศนะ,m,tat5 sa-1 na?4,tatsana,tadsana,tassana
 ทรายทอง,f,sAj1 tXN1,saithong,saitong,
 ทรายแก้ว,f,sAj1 kYw3,saikaeo,saikaew,
 ทวีชัย,m,Ta-1 wI-1 Caj1,thawichai,tawichai,tavichai
@@ -714,7 +714,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ทศพร,m,Tot4 sa-1 PXn1,thodsaphon,todsaporn,tossaporn
 ทศพล,m,Tot4 sa-1 Pon1,thodsaphon,todsapon,todsapol
 ทศวรรษ,m,Tot4 sa-1 wat4,thodsawat,tossawat,todsawad
-ทองศรี,f,TXN1 srI-5,thongsri,tongsri,
+ทองศรี,f,TXN1 sI-5,thongsri,tongsri,
 ทองเพียร,f,TXN1 PJn1,thongphian,tongpian,thongpian
 ทักษพร,f,Tak4 sa-1 PXn1,thaksaphon,taksaporn,taksapon
 ทักษอร,f,Tak4 sa-1 ?Xn1,thaksaon,taksaorn,thaksaorn
@@ -738,7 +738,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ทิพยาภรณ์,f,Tip4 Pa-1 jA-1 PXn1,thipphayaphon,tippayaporn,thippayaporn
 ทิพย์กมล,f,Tip4 ka-1 mon1,thipkamon,tipkamon,tipkamol
 ทิพย์ประภา,f,Tip4 pra-1 PA-1,thipprapha,thipprapa,tipprapa
-ทิพย์ภาพร,f,Tip4 Pa:0phXn1,thipphaphon,tippaporn,thippapon
+ทิพย์ภาพร,f,Tip4 PA-1 PXn1,thipphaphon,tippaporn,thippapon
 ทิพย์มณี,f,Tip4 ma-1 nI-1,thipmani,thipmanee,tipmanee
 ทิพย์รัตน์,f,Tip4 rat4,thiprat,tiprat,
 ทิพย์วรรณ,f,Tip4 wan1,thipwan,tipwan,
@@ -780,7 +780,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ธนพัฒน์,m,Ta-1 na-4 Pat4,thanaphat,tanapat,thanapat
 ธนภัทร,m,Ta-1 na-4 Pat4,thanaphat,tanapat,thanapat
 ธนภูมิ,m,Ta-1 na-4 PUm1,thanaphum,thanabhum,thanapoom
-ธนยศ,m,Ta-1 na-4 yot4,thanayot,thanayos,tanayos
+ธนยศ,m,Ta-1 na-4 jot4,thanayot,thanayos,tanayos
 ธนรัฐ,m,Ta-1 na-4 rat4,thanarat,tanarat,tanarad
 ธนวรรณ,f,Ta-1 na-4 wan1,thanawan,tanawan,
 ธนวรรธน์,m,Ta-1 na-4 wat4,thanawat,tanawat,tanawad
@@ -793,7 +793,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ธนศักดิ์,m,Ta-1 na-4 sak2,thanasak,tanasak,
 ธนสาร,m,Ta-1 na-4 sAn5,thanasan,thanasarn,tanasarn
 ธนสิทธิ์,m,Ta-1 na-4 sit2,thanasit,tanasit,tanasid
-ธนะ,m,Ta-1 na-4,thana,tana,
+ธนะ,m,Ta-1 na?4,thana,tana,
 ธนะรัตน์,m,Ta-1 na-4 rat4,thanarat,tanarat,tanarad
 ธนะวัฒน์,m,Ta-1 na-4 wat4,thanawat,tanawat,tanawad
 ธนะศักดิ์,m,Ta-1 na-4 sak2,thanasak,tanasak,
@@ -860,13 +860,13 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ธวัช,m,Ta-1 wat4,thawat,thawach,tawach
 ธวัฒน์,m,Ta-1 wat4,thawat,tawat,
 ธวัลรัตน์,f,Ta-1 wan1 rat4,thawanrat,tawanrat,tawalrat
-ธวัลหทัย,f,Ta-1 wan1 ha-1 Tai-1,thawanhathai,tawanhatai,tawalhathai
-ธัชชัย,m,Tat4 Cai-1,thatchai,tutchai,tachchai
+ธวัลหทัย,f,Ta-1 wan1 ha-1 Taj1,thawanhathai,tawanhatai,tawalhathai
+ธัชชัย,m,Tat4 Caj1,thatchai,tutchai,tachchai
 ธัชพล,m,Tat4 Ca-1 Pon1,thatchaphon,tatchaphol,tatchapon
 ธัญจิรา,f,Tan1 ci-1 rA-1,thanjira,tanjira,tunjira
 ธัญญรัศม์,f,Tan1 ja-1 rat4,thanyarat,tanyarat,tunyaras
 ธัญญลักษณ์,f,Tan1 ja-1 lak4,thanyarak,tunyalak,tanyalak
-ธัญญะ,m,Tan1 ja-4,thanya,tanya,tunya
+ธัญญะ,m,Tan1 ja?4,thanya,tanya,tunya
 ธัญญะรัตน์,f,Tan1 ja-4 rat4,thanyarat,tanyarat,tunyarat
 ธัญญาพร,f,Tan1 jA-1 PXn1,thanyaphon,tanyaporn,thanyaporn
 ธัญญาภรณ์,f,Tan1 jA-1 PXn1,thanyaphon,tanyaporn,thanyaporn
@@ -886,7 +886,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ธัญวัฒน์,m,Tan1 ja-1 wat4,thanyawat,tanyawat,thunyawat
 ธัญวัลย์,f,Tan1 ja-1 wan1,thanyawan,tanyawan,thunyawan
 ธัญสินี,f,Tan1 si-1 nI-1,thansini,thansinee,thunsini
-ธัญสิริ,f,Tan1 si-1 ri-2,thansiri,tansiri,thunsiri
+ธัญสิริ,f,Tan1 si-1 ri?4,thansiri,tansiri,thunsiri
 ธัญเทพ,m,Tan1 ja-1 TEp3,thanyathep,tanyatep,thunyatep
 ธัณย์สิตา,f,Tan1 si-1 tA-1,thansita,tansita,thunsita
 ธันยบูรณ์,m,Tan1 ja-1 bUn1,thanyabun,thanyaboon,tanyaboon
@@ -1044,7 +1044,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 นวนจันทร์,f,nWn1 can1,nuanchan,nuanjan,
 นวพล,m,na-4 wa-4 Pon1,nawaphon,nawapon,
 นวภรณ์,f,na-4 wa-4 PXn1,nawaphon,nawaporn,nawaphorn
-นวลตา,f,naun1 tA-1,nuanta,,
+นวลตา,f,nWn1 tA-1,nuanta,,
 นวลนภา,f,nWn1 na-4 PA-1,nuannapha,nuannapa,
 นวลน้อย,f,nWn1 nXj4,nuannoi,nuannoy,
 นวลปราง,f,nWn1 prAN1,nuanprang,nuanpang,
@@ -1052,7 +1052,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 นวลลออ,f,nWn1 la-1 ?X-1,nuanlao,nuanlaor,
 นวลละออ,f,nWn1 la-1 ?X-1,nuanlao,nuanlaor,
 นวลละออง,f,nWn1 la-1 ?XN1,nuanlaong,,
-นวลศรี,f,nWn1 srI-5,nuansri,nuansi,nuansee
+นวลศรี,f,nWn1 sI-5,nuansri,nuansi,nuansee
 นวลอนงค์,f,nWn1 ?a-1 noN1,nuananong,,
 นักรบ,m,nak4 rop4,nakrop,nakrob,
 นัจนันท์,f,nat4 ca-1 nan1,natchanan,natjanan,natjanun
@@ -1116,11 +1116,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 นิจวรรณ,f,nit4 ca-1 wan1,nitchawan,nidchawan,
 นิชดา,f,ni-4 Ca-1 dA-1,nichada,,
 นิชธาวัลย์,f,nit4 TA-1 wan1,nitthawan,nittawan,nidtawan
-นิชาภา,f,ni3:chA-1 PA-1,nichapha,nichapa,nishapa
+นิชาภา,f,ni?4 CA-1 PA-1,nichapha,nichapa,nishapa
 นิดา,f,ni-4 dA-1,nida,,
 นิตติญา,f,nit4 ti-1 jA-1,nittiya,nidtiya,
 นิตติยา,f,nit4 ti-1 jA-1,nittiya,nidtiya,
-นิติ,m,ni-4 ti-1,niti,,
+นิติ,m,ni-4 ti?2,niti,,
 นิติกร,m,ni-4 ti-1 kXn1,nitikon,nitikorn,
 นิติกาญจน์,f,ni-4 ti-1 kAn1,nitikan,nitikarn,
 นิติธร,m,ni-4 ti-1 TXn1,nitithon,nititorn,nitithorn
@@ -1145,7 +1145,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 นิภาพร,f,ni-4 PA-1 PXn1,niphaphon,nipaporn,niphaporn
 นิภาภรณ์,f,ni-4 PA-1 PXn1,niphaphon,nipaporn,niphaporn
 นิภาวรรณ์,f,ni-4 PA-1 wan1,niphawan,nipawan,
-นิมะ,m,ni-4 ma-1,nima,,
+นิมะ,m,ni-4 ma?4,nima,,
 นิมิต,m,ni-4 mit4,nimit,,
 นิยะดา,f,ni-4 ja-4 dA-1,niyada,,
 นิรชา,f,ni-4 ra-4 CA-1,niracha,,
@@ -1206,10 +1206,10 @@ name,gender,ipa,romanize1,romanize2,romanize3
 นูรอัยนี,f,nU-1 ra-1 ?aj1 ja-1 nI-1,nuraaiyani,nuraaiyanee,nooraaiyanee
 นูรฮายาตี,f,nU-1 ra-1 hA-1 jA-1 dI-1,nurahayati,nurahayatee,noorahayatee
 นูรฮูดา,f,nU-1 ra-1 hU-1 dA-1,nurahuda,noorahooda,
-นูรียะ,f,nU-1 rI-1 ja-4,nuriya,nureeya,nooreeya
-นูรียะห์,f,nU-1 rI-1 ja-4,nuriya,nureeya,nureeyah
+นูรียะ,f,nU-1 rI-1 ja?4,nuriya,nureeya,nooreeya
+นูรียะห์,f,nU-1 rI-1 ja?4,nuriya,nureeya,nureeyah
 นูรียา,f,nU-1 rI-1 jA-1,nuriya,nureeya,nooreeya
-นูรีย๊ะ,f,nU-1 rI-1 ja-4,nuriya,nureeya,nooreeya
+นูรีย๊ะ,f,nU-1 rI-1 ja?4,nuriya,nureeya,nooreeya
 นูรีฮัน,f,nU-1 rI-1 han1,nurihan,nooreehan,nureehan
 นเรศ,m,na-1 rEt3,naret,nares,
 นเรศน์,m,na-1 rEt3,naret,nares,
@@ -1329,7 +1329,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ประการ,m,pra-1 kAn1,prakan,prakarn,
 ประกาศ,m,pra-1 kAt2,prakat,prakart,
 ประกาศิต,m,pra-1 kA-1 sit2,prakasit,pragasit,prakasid
-ประคองศรี,f,pra-1 KXN1 srI-5,prakhongsri,prakongsri,
+ประคองศรี,f,pra-1 KXN1 sI-5,prakhongsri,prakongsri,
 ประจักร,m,pra-1 cak2,prachak,prajak,
 ประจักร์,m,pra-1 cak2,prachak,prajak,
 ประจักษ์,m,pra-1 cak2,prachak,prajak,
@@ -1362,8 +1362,8 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ประภาวรินทร์,f,pra-1 PA-1 wa-1 rin1,praphawarin,prapawarin,
 ประภาวัลย์,f,pra-1 PA-1 wan1,praphawan,prapawal,praphawal
 ประภาศ,m,pra-1 PAt3,praphat,prapas,praphas
-ประภาศรี,f,pra-1 PA-1 srI-5,praphasri,prapasri,
-ประภาสิริ,f,pra-1 PA-1 si-1 ri-2,praphasiri,prapasiri,
+ประภาศรี,f,pra-1 PA-1 sI-5,praphasri,prapasri,
+ประภาสิริ,f,pra-1 PA-1 si-1 ri?4,praphasiri,prapasiri,
 ประมุข,m,pra-1 muk4,pramuk,pramook,
 ประยุทธ,m,pra-1 jut4,prayut,prayuth,prayud
 ประวิช,m,pra-1 wit4,prawit,prawich,prawitch
@@ -1433,7 +1433,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ปองภพ,m,pXN1 Pop4,pongphop,pongphob,pongpob
 ปัญจมา,f,pan1 ca-1 mA-1,panchama,Panjama,
 ปัญจรัตน์,f,pan1 ca-1 rat4,pancharat,Panjarat,
-ปัญจะ,m,pan1 ca-2,pancha,Panja,
+ปัญจะ,m,pan1 ca?2,pancha,Panja,
 ปัญจาภรณ์,f,pan1 cA-1 PXn1,panchaphon,Panchaporn,Panchaphorn
 ปัญชลี,f,pan1 Ca-1 lI-1,panchali,Panchalee,
 ปัญชลีย์,f,pan1 Ca-1 lI-1,panchali,Panchalee,
@@ -1462,7 +1462,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ปารดา,f,pA-1 ra-4 dA-1,parada,,
 ปาริฉัตต์,f,pA-1 ri-4 Cat2,parichat,,
 ปาริฉัตร,f,pA-1 ri-4 Cat2,parichat,,
-ปาริชา,f,pA-1 ri-4 Ca-1,paricha,,
+ปาริชา,f,pA-1 ri-4 CA-1,paricha,,
 ปารีณา,f,pA-1 rI-1 nA-1,parina,Pareena,
 ปารียา,f,pA-1 rI-1 jA-1,pariya,Pareeya,
 ปาลิกา,f,pA-1 li-4 kA-1,palika,,
@@ -1486,7 +1486,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ปิยวรรณ์,f,pi-2 ja-4 wan1,piyawan,Piyavan,
 ปิยวิทย์,m,pi-2 ja-4 wit4,piyawit,Piyavit,
 ปิยศักดิ์,m,pi-2 ja-4 sak2,piyasak,,
-ปิยะ,m,pi-2 ja-4,piya,,
+ปิยะ,m,pi-2 ja?4,piya,,
 ปิยะชาติ,m,pi-2 ja-4 CAt3,piyachat,Piyachart,
 ปิยะณัฐ,m,pi-2 ja-4 nat4,piyanat,,
 ปิยะดา,f,pi-2 ja-4 dA-1,piyada,,
@@ -1512,7 +1512,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ปุญญิสา,f,pun1 ji-4 sA-5,punyisa,,
 ปุณฑริก,f,pun1 da-1 rik4,pundarik,,
 ปุณฑริก,f,pun1 Ta-1 rik4,puntharik,Puntarik,
-ปุณฑริกา,f,pun1 Ta-1 rikA-1,puntharika,Puntarika,
+ปุณฑริกา,f,pun1 Ta-1 ri-1 kA-1,puntharika,Puntarika,
 ปุณณดา,f,pun1 na-4 dA-1,punnada,,
 ปุณยนุช,f,pun1 ja-1 nut4,punyanut,Punyanuch,
 ปุณยภา,f,pun1 ja-4 PA-1,punyapha,Punyapa,
@@ -1539,7 +1539,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พงศ์พิพัฒน์,m,PoN1 Pi-4 Pat4,phongphiphat,Phongpipat,Pongpipat
 พงศ์ภัค,m,PoN1 Pak4,phongphak,Phongpak,Pongpak
 พงศ์ศักดิ์,m,PoN1 sak2,phongsak,Pongsak,
-พงศ์ศิริ,m,PoN1 si-2 ri-2,phongsiri,Pongsiri,
+พงศ์ศิริ,m,PoN1 si-2 ri?4,phongsiri,Pongsiri,
 พงศ์สิทธิ์,m,PoN1 sit2,phongsit,Pongsit,
 พงศ์เทพ,m,PoN1 TEp3,phongthep,Phongthep,Pongthep
 พงษกร,m,PoN1 sa-1 kXn1,phongsakon,Phongsakorn,Pongsakorn
@@ -1609,12 +1609,12 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พรวิมล,f,PXn1 wi-4 mon1,phonwimon,Pornwimon,Pornvimon
 พรวิไล,f,PXn1 wi-4 laj1,phonwilai,Pornwilai,Pornvilai
 พรศรี,f,PXn1 sI-5,phonsi,Pornsri,Pornsee
-พรศิริ,f,PXn1 si-2 ri-2,phonsiri,Pornsiri,
+พรศิริ,f,PXn1 si-2 ri?4,phonsiri,Pornsiri,
 พรสิทธิ์,m,PXn1 sit2,phonsit,Pornsit,
 พรสินี,f,PXn1 si-2 nI-1,phonsini,Pornsini,Pornsinee
-พรสิริ,f,PXn1 si-2 ri-2,phonsiri,Pornsiri,
+พรสิริ,f,PXn1 si-2 ri?4,phonsiri,Pornsiri,
 พรสุดา,f,PXn1 su-2 dA-1,phonsuda,Pornsuda,
-พรอณง,m,PXn1 a-1 noN1,phonanong,Pornanong,
+พรอณง,m,PXn1 ?a-1 noN1,phonanong,Pornanong,
 พริ้มเพรา,f,Prim5 Praw1,phrimphrao,Primphrao,Primprao
 พรเลิศ,m,PXn1 lZt3,phonloet,Pornloet,Pornlert
 พร้อมพรรณ,f,PrXm4 Pan1,phromphan,Promphan,Prompan
@@ -1628,7 +1628,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พลอยนภัส,f,PlXj1 na-4 Pat4,phloinaphat,Ploynaphat,Ploynapat
 พลอยพรรณ,f,PlXj1 Pan1,phloiphan,Ployphan,Ploypan
 พลัฏฐ์,m,Pa-1 lat4,phalat,Palat,
-พลากร,m,Pa-1 la:0kOn1,phalakon,Phalakorn,Palakorn
+พลากร,m,Pa-1 lA-1 kXn1,phalakon,Phalakorn,Palakorn
 พลาธิป,m,Pa-1 lA-1 Tip4,phalathip,Palathip,Palatip
 พลเทพ,m,Pon1 TEp3,phonthep,Pontep,
 พวงพิศ,f,PWN1 Pit4,phuangphit,Puangphit,Puangpit
@@ -1648,7 +1648,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พัชรพล,m,Pat4 Ca-1 ra-4 Pon1,phatcharaphon,Phatcharapon,Patcharapon
 พัชรภรณ์,f,Pat4 Ca-1 ra-4 PXn1,phatcharaphon,Phatcharaporn,Patcharaporn
 พัชรวรรณ,f,Pat4 Ca-1 ra-4 wan1,phatcharawan,Patcharawan,Patcharavan
-พัชระ,m,Pat4 Ca-1 ra-4,phatchara,Patchara,
+พัชระ,m,Pat4 Ca-1 ra?4,phatchara,Patchara,
 พัชรา,f,Pat4 Ca-1 rA-1,phatchara,Patchara,
 พัชราวลัย,f,Pat4 Ca-1 rA-1 wa-4 laj1,phatcharawalai,Patcharawalai,Patcharavalai
 พัชรีภรณ์,f,Pat4 Ca-1 rI-1 PXn1,phatchariphon,Patchareeporn,Patchariporn
@@ -1684,21 +1684,21 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พัสกร,m,Pat4 sa-1 kXn1,phatsakhon,Phatsakorn,Patsakorn
 พาณิภัค,f,PA-1 ni-4 Pak4,phaniphak,Phanipak,Panipak
 พาณี,f,PA-1 nI-1,phani,Pani,Panee
-พาตีเม๊าะ,f,PA-1 tI-1 mx-4,phatimo,Patimo,Pateemo
+พาตีเม๊าะ,f,PA-1 tI-1 mx?4,phatimo,Patimo,Pateemo
 พาฝัน,f,PA-1 fan5,phafan,Pafan,Pafun
 พายัพ,m,PA-1 jap4,phayap,Payap,
-พายุ,m,PA-1 ju-4,phayu,Payu,
+พายุ,m,PA-1 ju?4,phayu,Payu,
 พิจักษณ์,m,Pi-4 cak2,phichak,Pichak,Pijak
 พิชชาภัทร์,f,Pit4 CA-1 Pat4,phitchaphat,Pitchapat,
 พิชญดา,f,Pit4 Ca-1 ja-4 dA-1,phitchayada,Pitchayada,
-พิชญะ,m,Pit4 Ca-1 ja-4,phitchaya,Pitchaya,
+พิชญะ,m,Pit4 Ca-1 ja?4,phitchaya,Pitchaya,
 พิชญา,f,Pit4 Ca-1 jA-1,phitchaya,Pitchaya,
 พิชญาพร,f,Pit4 Ca-1 jA-1 PXn1,phitchayaphon,Pitchayaphon,Pitchayaporn
 พิชญุตม์,m,Pit4 Ca-1 jut4,phitchayut,Pitchayut,
 พิชญ์,m,Pit4,phit,Pit,
 พิชญ์สิณี,f,Pit4 si-2 nI-1,phitsini,Phitsinee,Pitsinee
 พิชยา,f,Pit4 Ca-1 jA-1,phitchaya,Pitchaya,
-พิชัย,m,Pi-4 Cai-1,phichai,Pichai,
+พิชัย,m,Pi-4 Caj1,phichai,Pichai,
 พิชาญ,m,Pi-4 CAn1,phichan,Pichan,
 พิชาติ,m,Pi-4 CAt3,phichat,Pichat,Pichart
 พิชานันท์,f,Pi-4 CA-1 nan1,phichanan,Pichanan,
@@ -1741,14 +1741,14 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พิมพ์ลักษณ์,f,Pim1 lak4,phimlak,Pimlak,
 พิมพ์วดี,f,Pim1 wa-4 dI-1,phimwadi,Phimwadee,Pimwadee
 พิมพ์วรีย์,f,Pim1 wa-4 rI-1,phimwari,Phimwaree,Pimwaree
-พิมพ์สิริ,f,Pim1 si-2 ri-2,phimsiri,Pimsiri,
+พิมพ์สิริ,f,Pim1 si-2 ri?4,phimsiri,Pimsiri,
 พิมภา,f,Pim1 PA-1,phimpha,Pimpha,Pimpa
 พิมลมาศ,f,Pi-4 mon1 mAt3,phimonmat,Pimonmat,
 พิมลรัตน์,f,Pi-4 mon1 rat4,phimonrat,Pimonrat,
-พิมศิริ,f,Pim1 si-2 ri-2,phimsiri,Pimsiri,
+พิมศิริ,f,Pim1 si-2 ri?4,phimsiri,Pimsiri,
 พิรานันท์,f,Pi-4 rA-1 nan1,phiranan,Piranan,Piranun
 พิราภรณ์,f,Pi-4 rA-1 PXn1,phiraphon,Piraphon,Piraporn
-พิริยะ,m,Pi-4 ri-4 ja-4,phiriya,Piriya,
+พิริยะ,m,Pi-4 ri-4 ja?4,phiriya,Piriya,
 พิริยาภรณ์,f,Pi-4 ri-4 jA-1 PXn1,phiriyaphon,Phiriyaporn,Piriyaporn
 พิรุณรัตน์,f,Pi-4 run1 rat4,phirunrat,Pirunrat,
 พิลาวัลย์,f,Pi-4 lA-1 wan1,philawan,Pilawan,Pilavan
@@ -1758,7 +1758,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พิศิษฐ,m,Pi-4 sit2,phisit,Pisit,
 พิศิษฐ์,m,Pi-4 sit2,phisit,Pisit,
 พิศเพลิน,f,Pit4 PlZn1,phitphloen,Phitplern,Pitplern
-พิษณุ,m,Pit4 sa-1 nu-4,phitsanu,Pitsanu,
+พิษณุ,m,Pit4 sa-1 nu?4,phitsanu,Pitsanu,
 พิษณุพงษ์,m,Pit4 sa-1 nu-4 PoN1,phitsanuphong,Pitsanuphong,Pitsanupong
 พิสันต์,m,Pi-4 san5,phisan,Pisan,Pisun
 พิสิฏฐ์,m,Pi-4 sit2,phisit,Pisit,
@@ -1783,7 +1783,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พีรวิชญ์,m,PI-1 ra-1 wit4,phirawit,Pirawit,Peerawit
 พีรวุฒิ,m,PI-1 ra-1 wut4,phirawut,Pirawut,Peerawut
 พีรศักดิ์,m,PI-1 ra-1 sak2,phirasak,Pirasak,Peerasak
-พีระ,m,PI-1 ra-4,phira,Peera,
+พีระ,m,PI-1 ra?4,phira,Peera,
 พีระชัย,m,PI-1 ra-4 Caj1,phirachai,Pirachai,Pirachai
 พีระพล,m,PI-1 ra-4 Pon1,phiraphon,Pirapon,Peerapon
 พีระพันธ์,m,PI-1 ra-4 Pan1,phiraphan,Pirapan,Peerapan
@@ -1792,22 +1792,22 @@ name,gender,ipa,romanize1,romanize2,romanize3
 พีระเดช,m,PI-1 ra-4 dEt2,phiradet,Piradet,Peeradet
 พุฒิพงษ์,m,Put4 Ti-4 PoN1,phutthiphong,Puttipong,
 พุฒิพัฒน์,m,Put4 Ti-4 Pat4,phutthiphat,Puttipat,
-พุทธรักษา,f,Put4 Ta-1 rak4 sa-5,phuttharaksa,Puttaraksa,Puttaruksa
+พุทธรักษา,f,Put4 Ta-1 rak4 sA-5,phuttharaksa,Puttaraksa,Puttaruksa
 พุทธิดา,f,Put4 Ti-4 dA-1,phutthida,Puttida,
 พุทธิพงศ์,m,Put4 Ti-4 PoN1,phutthiphong,Puttipong,
 พุทธิพงษ์,m,Put4 Ti-4 PoN1,phutthiphong,Puttipong,
-พูนศรี,f,PUn1 si-5,phunsi,Poonsee,
+พูนศรี,f,PUn1 sI-5,phunsi,Poonsee,
 พูนศักดิ์,m,PUn1 sak2,phunsak,Poonsak,
 ฟองคำ,f,fXN1 Kam1,fongkham,Fongkam,
 ฟองจันทร์,f,fXN1 can1,fongchan,Fongjan,
 ฟองแก้ว,f,fXN1 kYw3,fongkaeo,Fongkaew,
-ฟาดีละห์,f,fA-1 dI-1 la-4,fadila,Fadeela,
+ฟาดีละห์,f,fA-1 dI-1 la?4,fadila,Fadeela,
 ฟาติมา,f,fA-1 ti-2 mA-1,fatima,,
-ฟาตีฮะห์,f,fA-1 ti-1 ha-4,fatiha,Fateeha,
-ฟาตีเมาะ,f,fA-1 tI-1 mx-4,fatimo,Fateemo,
-ฟารีด๊ะ,f,fA-1 rI-1 da-4,farida,Fareeda,
-ฟาอีซะห์,f,fA-1 I-1 sa-4,faisa,,
-ฟ้าใส,f,fA-4 sai-5,fasai,Fahsai,
+ฟาตีฮะห์,f,fA-1 ti-1 ha?4,fatiha,Fateeha,
+ฟาตีเมาะ,f,fA-1 tI-1 mx?4,fatimo,Fateemo,
+ฟารีด๊ะ,f,fA-1 rI-1 da?4,farida,Fareeda,
+ฟาอีซะห์,f,fA-1 ?I-1 sa?4,faisa,,
+ฟ้าใส,f,fA-4 saj5,fasai,Fahsai,
 ภคพล,m,Pa-4 Ka-1 Pon1,phakhaphon,Phakapon,Pakapon
 ภคมณ,f,Pa-4 Ka-1 mon1,phakhamon,Phakamon,Pakamon
 ภควดี,f,Pa-4 Ka-1 wa-4 dI-1,phakhawadi,Pakawadi,Pakawadee
@@ -1841,13 +1841,13 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ภัทรพรรณ,f,Pat4 Ta-1 ra-4 Pan1,phattharaphan,Pattarapan,Pattarapun
 ภัทรพล,m,Pat4 Ta-1 ra-4 Pon1,phattharaphon,Pattarapon,Pattarapol
 ภัทรภณ,m,Pat4 Ta-1 ra-4 Pon1,phattharaphon,Pattarapon,Pattarapol
-ภัทรภรณ์,f,Pat4 Ta-1 ra-4,phattharaphon,Pattarapon,Pattaraporn
+ภัทรภรณ์,f,Pat4 Ta-1 ra-4 Pon1,phattharaphon,Pattarapon,Pattaraporn
 ภัทรฤทัย,f,Pat4 Ta-1 ra-4 rv-4 Taj1,phatthararuethai,Pattararuethai,Pattararuetai
 ภัทรวดี,f,Pat4 Ta-1 ra-4 wa-4 dI-1,phattharawadi,Pattarawadi,Pattarawadee
 ภัทรวรรณ,f,Pat4 Ta-1 ra-4 wan1,phattharawan,Pattarawan,Pattarawun
 ภัทรวุฒิ,m,Pat4 Ta-1 ra-4 wut4,phattharawut,Pattarawut,
 ภัทรสุดา,f,Pat4 Ta-1 ra-4 su-2 dA-1,phattharasuda,Pattarasuda,
-ภัทระ,m,Pat4 Ta-1 ra-4,phatthara,Pattara,
+ภัทระ,m,Pat4 Ta-1 ra?4,phatthara,Pattara,
 ภัทราพร,f,Pat4 Ta-1 rA-1 PXn1,phattharaphon,Pattaraphorn,Pattaraporn
 ภัทราภา,f,Pat4 Ta-1 rA-1 PA-1,phattharapha,Pattarapa,
 ภัทราวดี,f,Pat4 Ta-1 rA-1 wa-4 dI-1,phattharawadi,Pattarawadee,Pattaravadee
@@ -1952,21 +1952,21 @@ name,gender,ipa,romanize1,romanize2,romanize3
 มลตรี,m,mon1 trI-1,montri,Montree,
 มลทิรา,f,mon1 Ti-4 rA-1,monthira,Montira,
 มลฤดี,f,mon1 rv-4 dI-1,monruedi,Monruedee,
-มลิ,f,ma-1 li-4,mali,,
+มลิ,f,ma-1 li?4,mali,,
 มลิวรรณ,f,ma-1 li-4 wan1,maliwan,Malivan,
 มลิวัลย์,f,ma-1 li-4 wan1,maliwan,Malivan,
-มะ,m,ma-4,ma,,
+มะ,m,ma?4,ma,,
 มะดารี,m,ma-4 dA-1 rI-1,madari,Madaree,
-มะดาโอะ,m,ma-4 dA-1 ?o-2,madao,,
+มะดาโอะ,m,ma-4 dA-1 ?o?2,madao,,
 มะนาวี,m,ma-4 nA-1 wI-1,manawi,Manawee,
 มะปราง,f,ma-4 praN1,maprang,,
 มะยากี,m,ma-4 jA-1 kI-1,mayaki,Mayakee,
 มะยุรี,f,ma-4 ju-4 rI-1,mayuri,Mayuree,
 มะรอซี,m,ma-4 rX-1 sI-1,marosi,Marosee,
 มะรอบี,m,ma-4 rX-1 bI-1,marobi,Marobee,
-มะรอเซะ,m,ma-4 rX-1 se-4,marose,Marosae,
+มะรอเซะ,m,ma-4 rX-1 se?4,marose,Marosae,
 มะลัย,f,ma-4 laj1,malai,,
-มะลิ,f,ma-1 li-4,mali,,
+มะลิ,f,ma-1 li?4,mali,,
 มะลิวรรณ,f,ma-1 li-4 wan1,maliwan,Malivan,
 มะสุกรี,m,ma-4 su-2 krI-1,masukri,Masukree,
 มะแอ,m,ma-4 ?Y-1,maae,,
@@ -1980,27 +1980,27 @@ name,gender,ipa,romanize1,romanize2,romanize3
 มาณี,f,mA-1 nI-1,mani,Manee,
 มานนท์,m,mA-1 non1,manon,,
 มานพ,m,mA-1 nop4,manop,,
-มานะ,m,mA-1 na-4,mana,,
+มานะ,m,mA-1 na?4,mana,,
 มานะชัย,m,mA-1 na-4 Caj1,manachai,,
 มานะศักดิ์,m,mA-1 na-4 sak2,manasak,Manasuk,
 มานิต,m,mA-1 nit4,manit,,
 มานี,f,mA-1 nI-1,mani,Manee,
 มารินทร์,f,mA-1 rin1,marin,,
-มาริสา,f,mA-1 ri-4 sa-5,marisa,,
+มาริสา,f,mA-1 ri-4 sA-5,marisa,,
 มารีนี,f,mA-1 ri-4 nI-1,marini,Marinee,
-มารียะ,f,mA-1 rI-1 ja-4,mariya,Mareeya,
-มารียะห์,f,mA-1 rI-1 ja-4,mariya,Mareeya,
+มารียะ,f,mA-1 rI-1 ja?4,mariya,Mareeya,
+มารียะห์,f,mA-1 rI-1 ja?4,mariya,Mareeya,
 มารียา,f,mA-1 rI-1 jA-1,mariya,Mareeya,
-มารีเยาะ,f,mA-1 rI-1 jx-4,mariyo,Mareeyo,
+มารีเยาะ,f,mA-1 rI-1 jx?4,mariyo,Mareeyo,
 มารีแย,f,mA-1 rI-1 jY-1,mariyae,Mareeyae,
 มาลัยพร,f,mA-1 laj1 PXn1,malaiphon,Malaiporn,
 มาลิณี,f,mA-1 li-4 nI-1,malini,Malinee,
 มาลินี,f,mA-1 li-4 nI-1,malini,Malinee,
-มาลิษา,f,mA-1 li-4 sa-5,malisa,,
+มาลิษา,f,mA-1 li-4 sA-5,malisa,,
 มาลี,f,mA-1 lI-1,mali,Malee,
 มาลีรัตน์,f,mA-1 lI-1 rat4,malirat,Maleerat,
 มาวิน,m,mA-1 win1,mawin,Mavin,
-มาหะมะ,m,mA-1 ha-2 ma-4,mahama,,
+มาหะมะ,m,mA-1 ha-2 ma?4,mahama,,
 มาโนช,m,mA-1 nOt4,manot,Manote,
 มาโนชย์,m,mA-1 nOt4,manot,Manote,
 มิตรชัย,m,mit4 Caj1,mitchai,,
@@ -2032,8 +2032,8 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ยอดเพชร,m,jXt3 Pet4,yotphet,Yodphet,Yordphet
 ยะยา,m,ja-4 jA-1,yaya,,
 ยะห์ยา,m,ja-4 jA-1,yaya,,
-ยาการียา,m,jA-1 kA-1 ri:yA-1,yakariya,Yakareeya,
-ยามีละห์,f,jA-1 mI-1 la-4,yamila,Yameela,
+ยาการียา,m,jA-1 kA-1 rI-1 jA-1,yakariya,Yakareeya,
+ยามีละห์,f,jA-1 mI-1 la?4,yamila,Yameela,
 ยาวาเฮ,f,jA-1 wA-1 hE-1,yawahe,Yawahae,
 ยินดี,f,jin1 dI-1,yindi,Yindee,
 ยิ่งศักดิ์,m,jiN3 sak2,yingsak,Yingsuk,
@@ -2062,11 +2062,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ยุวรินทร์,f,ju-4 wa-4 rin1,yuwarin,,
 ยุวรี,f,ju-4 wa-4 rI-1,yuwari,Yuwaree,
 ยุวันดา,f,ju-4 wan1 dA-1,yuwanda,,
-ยูโซะ,m,jU-1 so-4,yuso,,
-ยูโซ๊ะ,m,jU-1 so-4,yuso,,
+ยูโซะ,m,jU-1 so?4,yuso,,
+ยูโซ๊ะ,m,jU-1 so?4,yuso,,
 รจนา,f,rot4 ca-1 nA-1,rotchana,Rotjana,Rodjana
-รชต,m,ra-4 Ca-1 ta-2,rachata,,
-รชตะ,m,ra-4 Ca-1 ta-2,rachata,,
+รชต,m,ra-4 Ca-1 ta?2,rachata,,
+รชตะ,m,ra-4 Ca-1 ta?2,rachata,,
 รชนีกร,f,ra-4 Ca-1 nI-1 kXn1,rachanikon,Rachanikorn,Rachaneekorn
 รชยา,f,ra-4 Ca-1 jA-1,rachaya,,
 รณกฤต,m,ron1 na-1 krit2,ronnakrit,,
@@ -2089,11 +2089,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 รวิภา,f,ra-4 wi-4 PA-1,rawipha,Rawipa,Ravipa
 รสรินทร์,f,rot4 sa-1 rin1,rotsarin,Rodsarin,
 รสลิน,f,rot4 sa-1 lin1,rotsalin,Rodsalin,
-รอกีเย๊าะ,f,rX-1 kI-1 jx-4,rokiyo,,
-รอซีดะห์,f,rX-1 sI-1 da-2,rosida,Roseeda,
+รอกีเย๊าะ,f,rX-1 kI-1 jx?4,rokiyo,,
+รอซีดะห์,f,rX-1 sI-1 da?2,rosida,Roseeda,
 รอมลี,m,rxm1 lI-1,romli,Romlee,
 รอยาลี,m,rX-1 jA-1 lI-1,royali,Royalee,
-รอฮีหม๊ะ,f,rX-1 hI-1 ma-4,rohima,Roheema,
+รอฮีหม๊ะ,f,rX-1 hI-1 ma?4,rohima,Roheema,
 ระพีพร,f,ra-4 PI-1 PXn1,raphiphon,Rapiporn,Rapeeporn
 ระพีพรรณ,f,ra-4 PI-1 Pan1,raphiphan,Rapiphan,Rapeephan
 ระวีวรรณ,f,ra-4 wI-1 wan1,rawiwan,Raweewan,
@@ -2112,7 +2112,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 รัชณี,f,rat4 Ca-1 nI-1,ratchani,Ratchanee,
 รัชดาพร,f,rat4 Ca-1 dA-1 PXn1,ratchadaphon,Ratchadaphorn,Ratchadaporn
 รัชดาวรรณ,f,rat4 Ca-1 dA-1 wan1,ratchadawan,,
-รัชตะ,m,rat4 Ca-1 ta-2,ratchata,,
+รัชตะ,m,rat4 Ca-1 ta?2,ratchata,,
 รัชนก,f,rat4 Ca-1 nok4,ratchanok,,
 รัชนิดา,f,rat4 Ca-1 ni-4 dA-1,ratchanida,,
 รัชนี,f,rat4 Ca-1 nI-1,ratchani,Ratchanee,
@@ -2192,12 +2192,12 @@ name,gender,ipa,romanize1,romanize2,romanize3
 รุ่งชัย,m,ruN3 Caj1,rungchai,,
 รุ่งณภา,f,ruN3 na-4 PA-1,rungnapha,Rungnapa,
 รุ่งธรรม,m,ruN3 Tam1,rungtham,Rungthum,Rungtam
-รุ่งฟ้า,f,ruN3 fa-4,rungfa,Rungfah,
+รุ่งฟ้า,f,ruN3 fA-4,rungfa,Rungfah,
 รุ่งรวี,f,ruN3 ra-4 wI-1,rungrawi,Rungrawee,
 รุ่งระวี,f,ruN3 ra-4 wI-1,rungrawi,Rungrawee,
 รุ่งรัศมี,f,ruN3 rat4 sa-1 mI-5,rungratsami,Rungratsamee,
 รุ่งฤทัย,f,ruN3 rv-4 Taj1,rungruethai,Rungruetai,
-รุ่งศิริ,f,ruN3 si-2 ri-2,rungsiri,,
+รุ่งศิริ,f,ruN3 si-2 ri?4,rungsiri,,
 รุ่งโรจน์,m,ruN3 rOt3,rungrot,Rungrote,
 รุ้งทอง,f,ruN4 ToN1,rungthong,Rungtong,
 รุ้งนภา,f,ruN4 na-4 PA-1,rungnapha,Rungnapa,
@@ -2234,8 +2234,8 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ลำพู,f,lam1 PU-1,lamphu,Lampu,
 ลำภู,f,lam1 PU-1,lamphu,Lampu,
 ลำยงค์,f,lam1 joN1,lamyong,,
-ลำยวน,f,lam1 yWn1,lamyuan,,
-ลำยอง,f,lam1 yoN1,lamyong,,
+ลำยวน,f,lam1 jWn1,lamyuan,,
+ลำยอง,f,lam1 joN1,lamyong,,
 ลำเจียก,f,lam1 cJk2,lamchiak,Lamjiak,
 ลำใย,f,lam1 jaj1,lamyai,lumyai,
 ลำไย,f,lam1 jaj1,lamyai,lumyai,
@@ -2250,7 +2250,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วงศ์เดือน,f,woN1 dWn1,wongduean,vongduean,
 วงษ์เดือน,f,woN1 dWn1,wongduean,vongduean,
 วงเดือน,f,woN1 dWn1,wongduean,vongduean,
-วชิร,m,wa-4 Ci-4 ra-4,wachira,vachira,
+วชิร,m,wa-4 Ci-4 ra?4,wachira,vachira,
 วชิรพงศ์,m,wa-4 Ci-4 ra-4 PoN1,wachiraphong,vachiraphong,wachirapong
 วชิรพงษ์,m,wa-4 Ci-4 ra-4 PoN1,wachiraphong,vachiraphong,wachirapong
 วชิรพล,m,wa-4 Ci-4 ra-4 Pon1,wachiraphon,vachiraphon,vachiraphol
@@ -2298,7 +2298,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วรรณวิไล,f,wan1 wi-4 laj1,wanwilai,wanvilai,
 วรรณศักดิ์,m,wan1 sak2,wansak,,
 วรรณา,f,wan1 nA-1,wanna,,
-วรรธนะ,m,wat4 Ta-1 na-4,watthana,wattana,
+วรรธนะ,m,wat4 Ta-1 na?4,watthana,wattana,
 วรรธนัย,m,wat4 Ta-1 naj1,watthanai,wattanai,
 วรรนิภา,f,wan1 ni-4 PA-1,wannipha,wannipa,
 วรรษชล,f,wat4 sa-2 Con1,watsachon,wassachon,
@@ -2320,7 +2320,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วราพร,f,wa-4 rA-1 PXn1,waraphon,varaporn,waraphorn
 วราพล,m,wa-4 rA-1 Pon1,waraphon,waraphol,varaphol
 วราภรณ์,f,wa-4 rA-1 PXn1,waraphon,varaphorn,waraporn
-วรายุ,m,wa-4 rA-1 ju-4,warayu,varayu,
+วรายุ,m,wa-4 rA-1 ju?4,warayu,varayu,
 วรายุทธ,m,wa-4 rA-1 jut4,warayut,varayuth,warayuth
 วรายุส,m,wa-4 rA-1 jut4,warayut,warayus,varayus
 วรารักษ์,f,wa-4 rA-1 rak4,wararak,vararak,
@@ -2355,10 +2355,10 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วศิน,m,wa-4 sin5,wasin,vasin,
 วสัน,m,wa-4 san5,wasan,vasan,
 วสิน,m,wa-4 sin5,wasin,vasin,
-วสุ,m,wa-4 su-2,wasu,vasu,
+วสุ,m,wa-4 su?2,wasu,vasu,
 วสุธร,m,wa-4 su-2 TXn1,wasuthon,wasuthorn,vasutorn
 วสุพล,m,wa-4 su-2 Pon1,wasuphon,wasupon,vasuphon
-วัชชิระ,m,wat4 Ci-4 ra-4,watchira,vatchira,
+วัชชิระ,m,wat4 Ci-4 ra?4,watchira,vatchira,
 วัชรชัย,m,wat4 Ca-1 ra-4 Caj1,watcharachai,vatcharachai,
 วัชรพงศ์,m,wat4 Ca-1 ra-4 PoN1,watcharaphong,watcharapong,vatcharaphong
 วัชรพงษ์,m,wat4 Ca-1 ra-4 PoN1,watcharaphong,watcharapong,vatcharaphong
@@ -2374,7 +2374,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วัชรีวรรณ,f,wat4 Ca-1 rI-1 wan1,watchariwan,watchareewan,vatchareewan
 วัฒนพงศ์,m,wat4 Ta-1 na-4 PoN1,watthanaphong,watthanapong,wattanaphong
 วัฒนพล,m,wat4 Ta-1 na-4 Pon1,watthanaphon,watthanapol,wattanaphol
-วันชนะ,m,wan1 Ca-1 na-4,wanchana,,
+วันชนะ,m,wan1 Ca-1 na?4,wanchana,,
 วันชัย,m,wan1 Caj1,wanchai,,
 วันณา,f,wan1 nA-1,wanna,,
 วันทนี,f,wan1 Ta-1 nI-1,wanthani,wanthanee,wantanee
@@ -2407,7 +2407,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วิจิตรา,f,wi-4 cit2 trA-1,wichittra,vijittra,wijittra
 วิชชา,m,wit4 CA-1,witcha,vitcha,wichcha
 วิชชากร,m,wit4 CA-1 kXn1,witchakon,witchakorn,wichchakorn
-วิชญะ,m,wit4 Ca-1 ja-4,witchaya,vitchaya,
+วิชญะ,m,wit4 Ca-1 ja?4,witchaya,vitchaya,
 วิชญาดา,f,wit4 Ca-1 jA-1 dA-1,witchayada,vitchayada,
 วิชยุตม์,m,wit4 Ca-1 jut4,witchayut,vichayuth,wichayuth
 วิชัย,m,wi-4 Caj1,wichai,vichai,
@@ -2443,11 +2443,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วิมลพร,f,wi-4 mon1 PXn1,wimonphon,vimolporn,wimonporn
 วิมลพรรณ,f,wi-4 mon1 Pan1,wimonphan,wimolphan,vimonpan
 วิมลมาศ,f,wi-4 mon1 mAt3,wimonmat,wimonmart,vimonmart
-วิมลศิริ,f,wi-4 mon1 si-2 ri-2,wimonsiri,wimolsiri,vimolsiri
+วิมลศิริ,f,wi-4 mon1 si-2 ri?4,wimonsiri,wimolsiri,vimolsiri
 วิยดา,f,wi-4 ja-4 dA-1,wiyada,viyada,
 วิรดา,f,wi-4 ra-4 dA-1,wirada,virada,
 วิรยา,f,wi-4 ra-4 jA-1,wiraya,viraya,
-วิระ,m,wi-4 ra-4,wira,vira,
+วิระ,m,wi-4 ra?4,wira,vira,
 วิระชัย,m,wi-4 ra-4 Caj1,wirachai,virachai,
 วิระยา,f,wi-4 ra-4 jA-1,wiraya,viraya,
 วิระศักดิ์,m,wi-4 ra-4 sak2,wirasak,virasak,
@@ -2459,7 +2459,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วิรากร,f,wi-4 rA-1 kXn1,wirakon,wirakorn,virakorn
 วิราพร,f,wi-4 rA-1 PXn1,wiraphon,wiraphorn,wiraporn
 วิราภรณ์,f,wi-4 rA-1 PXn1,wiraphon,wiraphorn,viraporn
-วิริยะ,m,wi-4 ri-4 ja-4,wiriya,viriya,
+วิริยะ,m,wi-4 ri-4 ja?4,wiriya,viriya,
 วิริยาภรณ์,f,wi-4 ri-4 jA-1 PXn1,wiriyaphon,wiriyaporn,viriyaporn
 วิรุจน์,m,wi-4 rut4,wirut,wiruth,virut
 วิรุฬห์,m,wi-4 run1,wirun,wiroon,viroon
@@ -2475,7 +2475,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วิศนี,f,wit4 sa-1 nI-1,witsani,witsanee,vitsanee
 วิศรุต,m,wit4 sa-1 rut4,witsarut,vissarut,wissarut
 วิศรุตา,f,wit4 sa-1 ru-4 tA-1,witsaruta,vitsaruta,wissaruta
-วิศวะ,m,wit4 sa-1 wa-4,witsawa,wissawa,vissawa
+วิศวะ,m,wit4 sa-1 wa?4,witsawa,wissawa,vissawa
 วิศิษฎ์,m,wi-4 sit2,wisit,wisith,visit
 วิศิษฏ์,m,wi-4 sit2,wisit,wisith,visit
 วิศิษฐ,m,wi-4 sit2,wisit,wisith,visit
@@ -2516,7 +2516,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 วีรวิชญ์,m,wI-1 ra-1 wit4,wirawit,wirawich,weerawich
 วีรวิทย์,m,wI-1 ra-1 wit4,wirawit,weerawit,veeravit
 วีรศักดิ์,m,wI-1 ra-1 sak2,wirasak,weerasak,veerasak
-วีระ,m,wI-1 ra-4,wira,weera,veera
+วีระ,m,wI-1 ra?4,wira,weera,veera
 วีระชน,m,wI-1 ra-1 Con1,wirachon,weerachon,veerachon
 วีระชาติ,m,wI-1 ra-1 CAt3,wirachat,weerachart,veerachart
 วีระพงศ์,m,wI-1 ra-1 PoN1,wiraphong,weerapong,veerapong
@@ -2582,7 +2582,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ศรีแพร,f,sI-5 PrY-1,siphrae,sriprae,
 ศรุตยา,f,sa-2 rut4 ta-1 jA-1,saruttaya,,
 ศลิษา,f,sa-2 li-4 sA-5,salisa,,
-ศศิ,f,sa-2 si-2,sasi,,
+ศศิ,f,sa-2 si?2,sasi,,
 ศศิกาญจน์,f,sa-2 si-2 kAn1,sasikan,sasikarn,
 ศศิญา,f,sa-2 si-2 jA-1,sasiya,,
 ศศิธร,f,sa-2 si-2 TXn1,sasithon,sasithorn,sasitorn
@@ -2613,7 +2613,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ศิรวิทย์,m,si-2 ra-1 wit4,sirawit,sirawith,
 ศิรศักดิ์,m,si-2 ra-1 sak2,sirasak,,
 ศิรสิทธิ์,m,si-2 ra-1 sit2,sirasit,sirasith,
-ศิระ,m,si-2 ra-4,sira,,
+ศิระ,m,si-2 ra?4,sira,,
 ศิราพร,f,si-2 rA-1 PXn1,siraphon,siraphorn,siraporn
 ศิริกาญจน์,f,si-2 ri-2 kAn1,sirikan,sirikarn,
 ศิริกานดา,f,si-2 ri-2 kAn1 dA-1,sirikanda,sirikarnda,
@@ -2671,7 +2671,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ศุภวัลย์,f,sup2 Pa-1 wan1,supphawan,suppawan,
 ศุภวิชญ์,m,sup2 Pa-1 wit4,supphawit,suppawich,
 ศุภวิทย์,m,sup2 Pa-1 wit4,supphawit,suppawit,suppawith
-ศุภศิริ,f,sup2 Pa-1 si-2 ri-2,supphasiri,suppasiri,
+ศุภศิริ,f,sup2 Pa-1 si-2 ri?4,supphasiri,suppasiri,
 ศุภศิลป์,m,sup2 Pa-1 sin5,supphasin,suppasilp,
 ศุภสัณห์,m,sup2 Pa-1 san5,supphasan,suppasan,
 ศุภสิทธิ์,m,sup2 Pa-1 sit2,supphasit,suppasit,
@@ -2694,11 +2694,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 สงคราม,m,soN5 KrAm1,songkhram,songkram,
 สงวนศรี,f,sa-2 NWn5 sI-5,sanguansi,sanguansri,
 สงวนศักดิ์,m,sa-2 NWn5 sak2,sanguansak,,
-สดายุ,m,sa-2 dA-1 ju-4,sadayu,,
+สดายุ,m,sa-2 dA-1 ju?4,sadayu,,
 สถิต,m,sa-2 Tit2,sathit,satit,
 สถิตย์,m,sa-2 Tit2,sathit,satit,
 สนชัย,m,son5 Caj1,sonchai,,
-สนธิ,m,son5 Ti-4,sonthi,,
+สนธิ,m,son5 Ti?4,sonthi,,
 สนธิชัย,m,son5 Ti-4 Caj1,sonthichai,,
 สนั่น,m,sa-2 nan2,sanan,sanhan,
 สนิศา,m,sa-2 ni-4 sA-5,sanisa,,
@@ -2816,7 +2816,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 สาริศา,f,sA-5 ri-4 sA-5,sarisa,,
 สาริสา,f,sA-5 ri-4 sA-5,sarisa,,
 สารีนา,f,sA-5 rI-1 nA-1,sarina,sareena,
-สารีปะ,f,sA-5 rI-1 Pa-2,saripa,sareepa,
+สารีปะ,f,sA-5 rI-1 pa?2,saripa,sareepa,
 สารี่,f,sA-5 rI-3,sari,saree,
 สาลิกา,f,sA-5 li-4 kA-1,salika,,
 สาลิณี,f,sA-5 li-4 nI-1,salini,salinee,
@@ -2828,7 +2828,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 สิงห์คำ,m,siN5 Kam1,singkham,singkam,
 สิงห์ทอง,m,siN5 TXN1,singthong,,
 สิทธา,m,sit2 TA-1,sittha,,
-สิทธิ,m,sit2 Ti-4,sitthi,,
+สิทธิ,m,sit2 Ti?4,sitthi,,
 สิทธิกร,m,sit2 Ti-4 kXn1,sitthikon,sitthikorn,
 สิทธิชัย,m,sit2 Ti-4 Caj1,sitthichai,,
 สิทธิชาติ,m,sit2 Ti-4 CAt3,sitthichat,sitthichart,sithichart
@@ -3048,7 +3048,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 สุราษฎร์,m,su-2 rAt3,surat,Surad,
 สุริชัย,m,su-2 ri-4 Caj1,surichai,,
 สุริยนต์,m,su-2 ri-4 jon1,suriyon,,
-สุริยะ,m,su-2 ri-4 ja-4,suriya,,
+สุริยะ,m,su-2 ri-4 ja?4,suriya,,
 สุริยัณห์,m,su-2 ri-4 jan1,suriyan,,
 สุริยา,m,su-2 ri-4 jA-1,suriya,,
 สุริยาพร,f,su-2 ri-4 jA-1 PXn1,suriyaphon,Suriyaporn,Suriyapon
@@ -3062,7 +3062,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 สุรเกียรติ,m,su-2 ra-1 kJt2,surakiat,,
 สุรเดช,m,su-2 ra-1 dEt2,suradet,Suradech,Suraded
 สุรเทพ,m,su-2 ra-1 TEp3,surathep,Suratep,
-สุลีพร,f,su-2 wa-4,suliphon,Suleeporn,Suleepon
+สุลีพร,f,su-2 lI-1 PXn1,suliphon,Suleeporn,Suleepon
 สุวจี,f,su-2 wa-4 cI-1,suwachi,Suwajee,Suvajee
 สุวณี,f,su-2 wa-4 nI-1,suwani,Suwanee,Suvanee
 สุวดี,f,su-2 wa-4 dI-1,suwadi,Suwadee,Suvadee
@@ -3123,14 +3123,14 @@ name,gender,ipa,romanize1,romanize2,romanize3
 หฤทัย,f,ha-2 rv-4 Taj1,haruethai,Haruetai,
 หฤษฎ์,m,ha-2 rit4,harit,,
 หอมหวล,f,hXm5 hWn5,homhuan,,
-หะมะ,m,ha-2 ma-4,hama,,
+หะมะ,m,ha-2 ma?4,hama,,
 หัสชัย,m,hat2 sa-1 Caj1,hatchai,Hasachai,Hassachai
 หัสดิน,m,hat2 sa-1 din1,hatsadin,Hasadin,Hassadin
 หัสนัย,m,hat2 sa-1 naj1,hatnai,Hasanai,Hassanai
 หาญ,m,hAn5,han,,
 หาญชัย,m,hAn5 Caj1,hanchai,,
 หาญณรงค์,m,hAn5 na-1 roN1,hannarong,,
-หามะ,m,hA-5 ma-4,hama,,
+หามะ,m,hA-5 ma?4,hama,,
 หิรัญ,m,hi-2 ran1,hiran,Hirun,
 องอาจ,m,?oN1 ?At2,ong-at,Ong-Aat,
 องุ่น,f,?a-1 Nun2,a-ngun,,
@@ -3148,7 +3148,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อติวิชญ์,m,?a-2 ti-1 wit4,atiwit,Athiwat,
 อติเทพ,m,?a-2 ti-1 TEp3,atithep,Atitep,Atitep
 อทิตยา,f,?a-2 Tit4 ta-2 jA-1,athittaya,Atitaya,
-อธิบดี,m,?a-2 Ti-4 ba-1 di-1,athibodi,Athibodee,Atibodee
+อธิบดี,m,?a-2 Ti-4 ba-1 dI-1,athibodi,Athibodee,Atibodee
 อธิปัตย์,m,?a-2 Ti-4 pat2,athipat,Atipat,Athiphat
 อธิพงศ์,m,?a-2 Ti-4 PoN1,athiphong,Atipong,Athipong
 อธิพัชร์,m,?a-2 Ti-4 Pat4,athiphat,Atipat,Athiphat
@@ -3314,7 +3314,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อัฌนา,f,?at2 Ca-1 nA-1,atchana,,
 อัญชรี,f,?an1 Ca-1 rI-1,anchari,Ancharee,
 อัญชรีย์,f,?an1 Ca-1 rI-1,anchari,Ancharee,
-อัญชสา,f,?an1 Ca-1 sa-5,anchasa,,
+อัญชสา,f,?an1 Ca-1 sA-5,anchasa,,
 อัญชิษฐา,f,?an1 Cit4 TA-5,anchittha,Anchitta,Anchitha
 อัญธิกา,f,?an1 Ti-4 kA-1,anthika,Antika,
 อัฐพงษ์,m,?at2 Ta-1 PoN1,attaphong,Attapong,
@@ -3326,11 +3326,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อับดุลรอมัน,m,?ap2 dun1 rX-1 man1,apdunroman,Abdulroman,
 อับดุลรอฮิม,m,?ap2 dun1 rX-1 him1,apdunrohim,Abdulrohim,
 อับดุลรอแม,m,?ap2 dun1 rX-1 mY-1,apdunromae,Abdulromae,
-อับดุลอาซิ,m,?ap2 dun1 ?A-1 si-1,apdunasi,Abdulasee,Abdulasi
+อับดุลอาซิ,m,?ap2 dun1 ?A-1 si?4,apdunasi,Abdulasee,Abdulasi
 อับดุลฮาดี,m,?ap2 dun1 hA-1 dI-1,apdunhadi,Abdulhadee,Abdulhadi
-อับดุลเลาะ,m,?ap2 dun1 lx-4,apdunlo,Abdulloh,Abdullo
-อับดุลเลาะห์,m,?ap2 dun1 lx-4,apdunlo,Abdulloh,Abdullo
-อับดุลเล๊าะ,m,?ap2 dun1 lx-4,apdunlo,Abdulloh,Abdullo
+อับดุลเลาะ,m,?ap2 dun1 lx?4,apdunlo,Abdulloh,Abdullo
+อับดุลเลาะห์,m,?ap2 dun1 lx?4,apdunlo,Abdulloh,Abdullo
+อับดุลเล๊าะ,m,?ap2 dun1 lx?4,apdunlo,Abdulloh,Abdullo
 อัฟฟาน,m,?ap4 fAn1,apfan,Affan,
 อัมพรรัตน์,f,?am1 PXn1 rat4,amphonrat,Ampornrat,Amponrat
 อัมพล,m,?am1 Pon1,amphon,Ampon,Ampol
@@ -3343,7 +3343,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อัยรินทร์,f,?aj1 ja-1 rin1,aiyarin,Iyarin,
 อัศวิน,m,?at2 sa-1 win1,atsawin,Assawin,Atsavin
 อัษฎาวุธ,m,?at2 sa-1 dA-1 wut4,atsadawut,Asdawut,Asdavuth
-อัสมะ,f,?at2 sa-1 ma-4,atsama,,
+อัสมะ,f,?at2 sa-1 ma?4,atsama,,
 อัสมัน,m,?at2 sa-1 man1,atsaman,,
 อัสมาน,m,?at2 sa-1 mAn1,atsaman,,
 อัสมี,m,?at2 sa-1 mI-1,atsami,Atsamee,Assamee
@@ -3352,19 +3352,19 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อาจหาญ,m,?At1 hAn5,athan,Atharn,Adharn
 อาจารี,f,?A-1 cA-1 rI-1,achari,Ajaree,Aacharee
 อาซัน,m,?A-1 san1,asan,,
-อาซิ,m,?A-1 si-4,asi,,
-อาซีซะห์,f,?A-1 sI-1 sa-4,asisa,Asisah,Aseesah
-อาซีซ๊ะ,f,?A-1 sI-1 sa-4,asisa,Asisah,Aseesah
-อาซียะ,f,?A-1 sI-1 ja-4,asiya,Aseeya,
+อาซิ,m,?A-1 si?4,asi,,
+อาซีซะห์,f,?A-1 sI-1 sa?4,asisa,Asisah,Aseesah
+อาซีซ๊ะ,f,?A-1 sI-1 sa?4,asisa,Asisah,Aseesah
+อาซียะ,f,?A-1 sI-1 ja?4,asiya,Aseeya,
 อาณัติ,m,?A-1 nat4,anat,,
 อาดัม,m,?A-1 dam1,adam,,
-อาดีละห์,f,?A-1 dI-1 la-4,adila,Aadilah,Aadila
+อาดีละห์,f,?A-1 dI-1 la?4,adila,Aadilah,Aadila
 อาทร,m,?A-1 TXn1,athon,Artorn,Arthorn
 อาทิติยา,f,?A-1 Ti-4 ti-1 jA-1,athitiya,Atitiya,Athithiya
 อาทิยา,f,?A-1 Ti-4 jA-1,athiya,Atiya,
 อานนท์,m,?A-1 non1,anon,Anont,
 อานัน,m,?A-1 nan1,anan,Anun,
-อานีซะห์,f,?A-1 ni:sa-4,anisa,Aneesah,Anisah
+อานีซะห์,f,?A-1 nI-1 sa?4,anisa,Aneesah,Anisah
 อานีตา,f,?A-1 nI-1 tA-1,anita,Aneeta,
 อานูวา,m,?A-1 nU-1 wA-1,anuwa,Anuva,
 อาภร,f,?A-1 PXn1,aphon,Arporn,Arpon
@@ -3372,9 +3372,9 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อาภาพร,f,?A-1 PA-1 PXn1,aphaphon,Apaporn,Apapon
 อาภาภรณ์,f,?A-1 PA-1 PXn1,aphaphon,Apaporn,Apapon
 อามานี,f,?A-1 mA-1 nI-1,amani,Amanee,Aamani
-อามีนะห์,f,?A-1 mI-1 na-4,amina,Aminah,Ameenah
+อามีนะห์,f,?A-1 mI-1 na?4,amina,Aminah,Ameenah
 อารง,m,?A-1 roN1,arong,,
-อารยะ,m,?A-1 ra-1 ja-4,araya,Aaraya,
+อารยะ,m,?A-1 ra-1 ja?4,araya,Aaraya,
 อารยา,f,?A-1 ra-1 jA-1,araya,Arayaa,Aaraya
 อารัญ,m,?A-1 ran1,aran,Aaran,
 อาริตา,f,?A-1 ri-4 tA-1,arita,Aarita,
@@ -3389,11 +3389,11 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อารุณี,f,?A-1 ru-4 nI-1,aruni,Arunee,Aarunee
 อาลิสา,f,?A-1 li-4 sA-5,alisa,Aalisa,
 อาลี,m,?A-1 lI-1,ali,Aalee,
-อาลียะ,m,?A-1 lI-1 ja-4,aliya,Aleeya,Aaleeya
-อาหะมะ,m,?A-1 ha-1 ma-4,ahama,Aahama,
-อาหามะ,m,?A-1 hA-5 ma-4,ahama,Aahama,
-อาอีเสาะ,f,?A-1 ?I-1 sx-4,aiso,Aaisoh,
-อาฮามะ,m,?A-1 hA-1 ma-4,ahama,Aahama,
+อาลียะ,m,?A-1 lI-1 ja?4,aliya,Aleeya,Aaleeya
+อาหะมะ,m,?A-1 ha-1 ma?4,ahama,Aahama,
+อาหามะ,m,?A-1 hA-5 ma?4,ahama,Aahama,
+อาอีเสาะ,f,?A-1 ?I-1 sx?2,aiso,Aaisoh,
+อาฮามะ,m,?A-1 hA-1 ma?4,ahama,Aahama,
 อาแว,m,?A-1 wY-1,awae,Aawae,
 อำนวยพร,f,?am1 nWj1 PXn1,amnuaiphon,Amnuayporn,Amnuaiporn
 อำนาจ,m,?am1 nAt3,amnat,Amnaj,
@@ -3402,7 +3402,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อำภา,f,?am1 PA-1,ampha,Ampaa,Amphaa
 อำไพ,f,?am1 Paj1,amphai,Ampai,
 อำไพพรรณ,f,?am1 Paj1 Pan1,amphaiphan,Ampaipan,
-อิทธิ,m,?it2 Ti-4,itthi,Idhi,
+อิทธิ,m,?it2 Ti?4,itthi,Idhi,
 อิทธิกร,m,?it2 Ti-4 kXn1,itthikon,Itthikorn,Ittikorn
 อิทธิพงศ์,m,?it2 Ti-4 PoN1,itthiphong,Itthipong,Ittipong
 อิทธิพร,m,?it2 Ti-4 PXn1,itthiphon,Itthiporn,Ittiporn
@@ -3458,9 +3458,9 @@ name,gender,ipa,romanize1,romanize2,romanize3
 อ้าย,m,?Xj3,ai,,
 ฮัมดี,m,ham1 dI-1,hamdi,Hamdee,Humdee
 ฮาซัน,m,hA-1 san1,hasan,,
-ฮาบีบ๊ะ,f,hA-1 bI-1 ba-4,habiba,Habeeba,
-ฮามะ,m,hA-1 ma-4,hama,,
-ฮามีด๊ะ,f,hA-1 mI-1 da-4,hamida,Hameeda,
+ฮาบีบ๊ะ,f,hA-1 bI-1 ba?4,habiba,Habeeba,
+ฮามะ,m,hA-1 ma?4,hama,,
+ฮามีด๊ะ,f,hA-1 mI-1 da?4,hamida,Hameeda,
 ฮารง,m,hA-1 roN1,harong,,
 ฮุสนา,f,hut4 sa-1 nA-1,hutsana,Hussana,
 ฮูดา,f,hU-1 dA-1,huda,Huuda,
@@ -3487,7 +3487,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เกษมศักดิ์,m,ka-1 sEm5 sak2,kasemsak,,
 เกษราพร,f,kEt2 sa-1 rA-1 PXN1,kesaraphon,Kesaraporn,Kesarapon
 เกษราภรณ์,f,kEt2 sa-1 rA-1 PXN1,kesaraphon,Kesaraporn,Kesarapon
-เกษศิริ,f,kEt2 si-1 ri-2,ketsiri,,
+เกษศิริ,f,kEt2 si-1 ri?2,ketsiri,,
 เกสร,f,kE-1 sXn5,keson,Kesorn,
 เกียรติกุล,m,kJt2 ti-1 kun1,kiattikun,Kiattikoon,
 เกียรติคุณ,m,kJt2 ti-1 Kun1,kiattikhun,Kiattikun,Kiattikoon
@@ -3578,7 +3578,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เทียนชัย,m,TJn1 Caj1,thianchai,Tianchai,
 เทียมจันทร์,f,TJm1 can1,thiamchan,Tiamjan,Tiamchan
 เนตรดาว,f,nEt3 dAw1,netdao,Nethdao,
-เนติ,m,nE-1 ti-2,neti,Nethi,
+เนติ,m,nE-1 ti?2,neti,Nethi,
 เนติพงษ์,m,nE-1 ti-2 PoN1,netiphong,Netipong,Nethipong
 เนติมา,f,ne-1 ti-2 mA-1,netima,Nethima,
 เนรมิต,m,nE-1 ra-1 mit4,neramit,,
@@ -3591,8 +3591,8 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เบญจมาศ,f,ben1 ca-1 mAt3,benchamat,Benjamat,Benjamas
 เบญจมาส,f,ben1 ca-1 mAt3,benchamat,Benjamat,Benjamas
 เบญจา,f,ben1 cA-1,bencha,Benja,
-เบญญทิพย์,f,ben1 ya-1 Tip4,benyathip,Benyatip,
-เบญญาดา,f,ben1 yA-1 dA-1,benyada,,
+เบญญทิพย์,f,ben1 ja-1 Tip4,benyathip,Benyatip,
+เบญญาดา,f,ben1 jA-1 dA-1,benyada,,
 เบ็ญจวรรณ์,f,ben1 ca-1 wan1,benchawan,Benjawan,Benchawan
 เบ็ญจา,f,ben1 cA-1,bencha,Benja,
 เปมิกา,f,pE-1 mi-4 kA-1,pemika,,
@@ -3658,7 +3658,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เรวัติ,m,rE-1 wat4,rewat,Revat,
 เริงฤทธิ์,m,rZN1 rit4,roengrit,,
 เริงศักดิ์,m,rZN1 sak2,roengsak,,
-เรียม,f,ri:am1,riam,,
+เรียม,f,rJm1,riam,,
 เรืองชัย,m,rWN1 Caj1,rueangchai,,
 เรืองฤทธิ์,m,rWN1 rit4,rueangrit,,
 เรืองศักดิ์,m,rWN1 sak2,rueangsak,,
@@ -3671,7 +3671,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เลอศักดิ์,m,lZ-1 sak2,loesak,,
 เลิศ,m,lZt3,loet,,
 เลิศชัย,m,lZt3 Caj1,loetchai,,
-เลิศชาย,m,l@:t2chAj1,loetchai,,
+เลิศชาย,m,lZt2 CAj1,loetchai,,
 เลียม,f,lJm1,liam,,
 เวช,m,wEt3,wet,Wech,Wetch
 เวชยันต์,m,wEt3 Ca-1 jan1,wetchayan,Wechayan,
@@ -3694,7 +3694,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 เสนีย์,m,sE-5 nI-1,seni,Senee,
 เสมอใจ,f,sa-1 mZ-5 caj1,samoechai,Samoejai,
 เสริมศักดิ์,m,sZm5 sak2,soemsak,,
-เสริมศิริ,f,sZm5 si-1 ri-2,soemsiri,,
+เสริมศิริ,f,sZm5 si-1 ri?4,soemsiri,,
 เสรี,m,sE-5 rI-1,seri,Seree,
 เสวก,m,sa-2 wEk2,sawek,,
 เสาวดี,f,saw5 wa-1 dI-1,saowadi,Saowadee,Saovadee
@@ -3754,12 +3754,12 @@ name,gender,ipa,romanize1,romanize2,romanize3
 แพรวพรรณ,f,PrYw1 Pan1,phraeophan,Praewpan,Praewphan
 แพรวา,f,PrYw1 wA-1,phraewa,Praewa,Praewwa
 แมน,m,mYn1,maen,Man,
-แมะ,f,my-4,mae,,
+แมะ,f,my?4,mae,,
 แรมจันทร์,f,rYm1 can1,raemchan,Ramchan,Ramjan
 แวรุสลัน,m,wY-1 rut4 sa-1 lan1,waerutsalan,Waeruslan,
 แววดาว,f,wYw1 dAw1,waeodao,Waewdao,
 แววมณี,f,wYw1 ma-1 nI-1,waeomani,Waewmanee,
-แวหามะ,m,wY-1 hA-5 ma-4,waehama,Waehama,
+แวหามะ,m,wY-1 hA-5 ma?4,waehama,Waehama,
 แวอาแซ,m,wY-1 ?A-1 sY-1,waeasae,Wae-a-sae,
 แสงระวี,f,sYN5 ra-4 wI-1,saengrawi,Saengrawee,Sangrawee
 แสงแข,f,sYN5 KY-5,saengkhae,Sangkae,Sangkhae
@@ -3790,7 +3790,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 โรจน์,m,rOt4,rot,Roj,
 โรสนานิง,m,rO-1 sa-1 nA-1 niN1,rosananing,,
 โศภิต,f,sO-5 Pit4,sophit,Sopit,
-โศรดา,f,srO-5 ra-1 dA-1,sorada,,
+โศรดา,f,sO-5 ra-1 dA-1,sorada,,
 โสน,f,sa-1 nOn5,sano,,
 โสพล,m,sO-5 Pon1,sophon,Sopon,
 โสภณ,m,sO-5 Pon1,sophon,Sopon,
@@ -3837,7 +3837,7 @@ name,gender,ipa,romanize1,romanize2,romanize3
 ไพรสน,m,Praj1 son5,phraison,Praison,
 ไพลิน,f,Paj1 lin1,phailin,Pailin,
 ไพศรี,f,Paj1 sI-5,phaisi,Paisee,
-ไพเราะ,f,Paj1 rx-4,phairo,Pairoa,Pairoh
+ไพเราะ,f,Paj1 rx?4,phairo,Pairoa,Pairoh
 ไพโรจน์,m,Paj1 rOt5,phairot,Pairoj,Pairot
 ไฟซอล,m,faj1 sXn4,faison,Faisol,
 ไมตรี,m,maj1 trI-1,maitri,Maitree,
