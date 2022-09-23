@@ -40,33 +40,34 @@ mainly focusing **End-to-End Model** that does not need other data and linguisti
 
 ## Model Variations
 
-**model architecture** (3) x **output** (3) x **additional data** (3) x **prediction** (2) = **54** possible petterns of model
+Possible models are factorial. **Model Architecture** (3) x **Output** (3) x **Additional Data** (3) x **Prediction Method** (2) = **54** petterns
 
-`tltk.nlp.th2roman()` - **benchmark**
+`tltk.nlp.th2roman()` - is used as benchmark
 
-> #### architecture
+> #### Model Architecture
 
 1. **LSTM w/o attention** : encoder-BiLSTM, decoder-LSTM
 2. **LSTM with attention**
-3. **Transformers**
+3. **Transformers** : self-attention encoder/decoder
 
-> #### output
+> #### Output (target)
 
-1. **syllable token** - one syllable is one token (treated as vocab) 
-e.g. สมใจ -> `["som5", "jai1"]`a
-2. **phoneme** - one syllable consists of `(onset, vowel, coda, tone)`
-e.g. สมใจ -> `[('s', 'o', 'm', 5), ('j', 'a', 'i', 1)]`
-decoder has 4 inputs/outpus
-3. **roman** - End-to-End conversion
+1. **roman** - End-to-End conversion from Thai to Roman
 e.g. สมใจ -> `['s', 'o', 'm', 'j', 'a', 'i']`
+2. **syllable token** - one syllable is treated one token (vocab) 
+e.g. สมใจ -> `["som5", "jai1"]`
+3. **phoneme** - one syllable consists of 4 phonological features `(onset, vowel, coda, tone)`
+e.g. สมใจ -> `[('s', 'o', 'm', 5, 'B'), ('j', 'a', 'i', 1, 'E')]`
+decoder has 5 outputs (4 features + BIEO tagging)
 
-> #### additional data
+
+> #### Additional Data
 
 1. **w/o dictionary** : only 3,806 Thai names
 2. **with dictionary** : 3,806 Thai names + 26,828 words
 3. **Davor's data** : 100K+ names (no IPA annotations), must be filtered
 
-> #### Predction
+> #### Predction Method
 
 1. **Greedy Search**
 2. **Beam Search** : keep 3 most probable candidates

@@ -1,15 +1,44 @@
-## data dictionary
+# Data Dictionary
 
-- `name_romanization_original_data.csv` : original data of annotated Thai names
+- `name_romanization_original_data.csv` : original data of annotated Thai names by Prim
 - `name_romanization.csv` : cleaned data for training
   - `name` : Thai names
   - `gender` : `f` or `m`
-  - `ipa` : **encoded** IPA, each syllable consists of (onset, vowel, coda, tone) e.g. `KwAj1`
+  - `ipa` : **encoded IPA**, each syllable consists of (onset, vowel, coda, tone) e.g. `KwAj1`
   - `romanize1` : romanization according to RTGS
-  - `romanize2`, `romanize3` : other variations
+  - `romanize2`, `romanize3` : other variations of transcription
 
+~~~
+name,gender,ipa,romanize1,romanize2,romanize3
+กุลสตรี,f,kun1 la-1 sat2 trI-1,kunlasattri,kullasattri,
+กุสุมา,f,ku-2 su-2 mA-1,kusuma,gusuma,
+กุสุมาลย์,f,ku-2 su-2 mAn1,kusuman,kusumal,gusumal
+กุหลาบ,f,ku-1 lAp2,kulap,kulab,kularb
+ก่อเกียรติ,m,kX-2 kJt2,kokiat,korkiat,gorkiat
+~~~
 
-## encoded IPA in data
+- `g2p_dict` : additional dictionary data including only **words with at least 2 syllables**
+  - **26,828** words
+  - `grapheme` : Thai transcription
+  - `phoneme` : **encoded IPA**
+  - `rtgs` : RTGS transcription
+
+~~~
+grapheme,phoneme,rtgs
+กกกอด,kok2 kXt2,kokkot
+กกช้าง,kok2 CAN4,kokchang
+กกธูป,kok2 TUp3,kokthup
+กกหู,kok2 hU-5,kokhu
+กกุธภัณฑ์,ka-2 kut2 Ta-4 Pan1,kakutthaphan
+~~~ 
+
+- `thai2phone.csv` : original data of `g2p_dict`, with many missing values
+
+- `number2phone.csv` : numbers and their encoded IPA transcriptions
+
+- `train_x.txt`, `train_y.txt`, `train_y_ipa.txt`, `test_x.txt`, `test_y.txt`,`test_y_ipa.txt` : split data of `name_romanization.csv` 
+
+# encoded IPA in data
 
 ### Onset
 
