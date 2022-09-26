@@ -58,7 +58,7 @@ e.g. สมใจ -> `['s', 'o', 'm', 'j', 'a', 'i']`
 e.g. สมใจ -> `["som5", "jai1"]`
 3. **phoneme** - one syllable consists of 4 phonological features `(onset, vowel, coda, tone)`
 e.g. สมใจ -> `[('s', 'o', 'm', 5, 'B'), ('j', 'a', 'i', 1, 'E')]`
-decoder has 5 outputs (4 features + BIEO tagging)
+- decoder has 5 outputs (4 features + **BIEO** tagging)
 
 
 > #### Additional Data
@@ -82,6 +82,9 @@ decoder has 5 outputs (4 features + BIEO tagging)
 
 ![model_attention](https://user-images.githubusercontent.com/44984892/175194689-5ed0d2ec-ce10-4067-a47d-7b6edaaea24c.png)
 
+> LSTM with attention - Phoneme Model
+
+![phoneme_lstm](https://user-images.githubusercontent.com/44984892/192186740-2e87ca65-5edc-4207-b76b-906431de8e6f.png)
 
 ## Result
 
@@ -91,11 +94,21 @@ preliminary train with validation - no overfitting
 
 > Result of Greedy Search
 
+>> End-to-End Model
+
 ||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|LSTM attention, syl token|Transformers(5)|Transformers(5) + dict|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |WER|**0.090782**|0.259259|0.156790|0.122905|**0.090782**|0.215|0.123|0.051|
 |CER macro|**0.012128**|0.075115|0.038668|0.035918|0.024459|0.073|0.034|0.018|
 |CER micro|**0.012049**|0.075955|0.038693|0.036534|0.024111|0.073|0.034|0.018|
+
+>> Phoneme Model (convert to IPA first)
+
+||tltk|LSTM|LSTM attention|
+|:-:|:-:|:-:|:-:|
+|WER|**0.090782**|-|0.29|
+|CER macro|**0.012128**|-|-|
+|CER micro|**0.012049**|-|-|
 
 > Result of Beam Search (tltk has no beam search)
 
