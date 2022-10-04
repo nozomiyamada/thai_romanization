@@ -84,6 +84,8 @@ e.g. สมใจ -> `[('s', 'o', 'm', 5, 'B'), ('j', 'a', 'i', 1, 'E')]`
 
 > LSTM with attention - Phoneme Model
 
+![phoneme_LSTM_pic](https://user-images.githubusercontent.com/44984892/193749645-df2a7a4a-f153-4398-a919-740d8ebd71d2.png)
+
 ![phoneme_lstm](https://user-images.githubusercontent.com/44984892/192186740-2e87ca65-5edc-4207-b76b-906431de8e6f.png)
 
 ## Result
@@ -98,13 +100,13 @@ preliminary train with validation - no overfitting
 
 ||tltk|LSTM|LSTM attention|LSTM + dict|LSTM attention + dict|LSTM attention, syl token|Transformers(5)|Transformers(5) + dict|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|WER|**0.090782**|0.259259|0.156790|0.122905|**0.090782**|0.215|0.123|0.051|
+|WER|**0.090782**|0.259259|0.156790|0.122905|0.090782|0.215|0.123|**0.051**|
 |CER macro|**0.012128**|0.075115|0.038668|0.035918|0.024459|0.073|0.034|0.018|
 |CER micro|**0.012049**|0.075955|0.038693|0.036534|0.024111|0.073|0.034|0.018|
 
 >> Phoneme Model (convert to IPA first)
 
-||tltk|LSTM|LSTM attention|
+||tltk|LSTM|LSTM attention (1st try)|
 |:-:|:-:|:-:|:-:|
 |WER|**0.090782**|-|0.29|
 |CER macro|**0.012128**|-|-|
