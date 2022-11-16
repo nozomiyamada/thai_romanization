@@ -3,18 +3,16 @@ from keras import layers
 from requests import head
 from tqdm import tqdm
 import tensorflow as tf
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.utils import plot_model, to_categorical
+from tensorflow.keras.utils import plot_model, to_categorical, pad_sequences
 import numpy as np
 
 ## import fixed index
-from thai_romanize_utils import THAI2INDEX, ROMAN2INDEX 
+from thai_romanize_util import THAI2INDEX, ROMAN2INDEX 
 
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 from IPython.display import Image, display_png
 import pandas as pd
-from tensorflow.keras.utils import plot_model
 
 ######################################################################################################################
 ###   CLASS FOR PRE-PROCESSING
@@ -357,7 +355,7 @@ class Seq2Seq(__BaseModel):
 
             ### sampling for greedy search ###
             if not is_beam:
-                output_ids, h, c = get_next_output(target_seq, h, c) # h, c are overwrited
+                output_ids, h, c = get_next_output(target_seq, h, c) # override h, c 
                 sampled_id= np.argmax(output_ids[0, -1, :])
                 
                 if (sampled_id == 2 or len(sampled_seq) > self.data.maxlen_output): # stop if <eos>=2
@@ -423,43 +421,70 @@ class Seq2Seq(__BaseModel):
 ###   CLASS FOR TRANSFORMER
 ######################################################################################################################
 
-class PositionalEncoding(__BaseModel):
-    def __init__(self, seq_len, output_dim=128, n=10000):
+def PositionalEncoding(input_tensor, n=10000) -> tf.Tensor:
+    """
+    return matrix of P_kj
+    P(k, 2i) = sin(k/n^(2i/d))
+    P(k, 2i+1) = cos(k/n^(2i/d))
+    
+    k : position of an object in the input sequence
+    d : dimension of the output embedding space
+    n : user-defined scalar, set to 10,000 by the authors of Attention Is All You Need.
+    """
+    input_dtype = input_tensor.dtype
+    _, seq_len, output_dim = input_tensor.shape
+    batch_size = tf.unstack(tf.shape(input_tensor))[0] # must tf.unstack because batch_size is None
+    P = np.zeros((seq_len, output_dim))
+    for k in range(seq_len):
+        for i in np.arange(int(output_dim/2)):
+            denominator = np.power(n, 2*i/output_dim)
+            P[k, 2*i] = np.sin(k/denominator)
+            P[k, 2*i+1] = np.cos(k/denominator)
+    P = tf.convert_to_tensor(P, dtype=input_dtype)
+    P = tf.tile(tf.expand_dims(P, axis=0), [batch_size, 1, 1])
+    return P + input_tensor
+
+
+########## ATTENTIONS : Self or Target-Source ##########
+
+class SelfAttention():
+    def __init__(self, seq_len, emb_dim=256, head_num=4, dropout_rate=0.2, nth=1, en_or_de='E'):
         self.seq_len = seq_len
-        self.output_dim = output_dim
-        self.n = n
-
-    def __call__(self):
-        P = np.zeros((self.seq_len, self.output_dim))
-        for k in range(self.seq_len):
-            for i in np.arange(int(d/2)):
-                denominator = np.power(self.n, 2*i/self.output_dim)
-                P[k, 2*i] = np.sin(k/denominator)
-                P[k, 2*i+1] = np.cos(k/denominator)
-        return P
-
-
-class SingleTransformer(__BaseModel):
-    def __init__(self, data, emb_dim=256, hidden_dim=128, head_num=4, dropout_rate=0.2):
-        self.data = data
-        self.seq_len = data.maxlen_input
         self.emb_dim = emb_dim
-        self.hidden_dim = hidden_dim
+        self.hidden_dim = emb_dim // head_num
         self.head_num = head_num
         assert emb_dim % head_num == 0, ValueError('emb_dim must be multiple of head_num')
         ### LAYERS ###
-        self.input = layers.Input(batch_size=None, shape=(self.seq_len, emb_dim), name='Input') # input must be (batch, seq_len, emb_dim)
-        self.split = layers.Lambda(self._split_head, output_shape=(head_num, self.seq_len, emb_dim//head_num), name='Split_Head') # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len Q, emb_dim//head_num)
-        self.Q = layers.Dense(hidden_dim, activation='relu', name='Query') # (batch, head_num, seq_len, emb_dim) -> (batch, head_num, seq_len, hidden_dim)
-        self.K = layers.Dense(hidden_dim, activation='relu', name='Key')
-        self.V = layers.Dense(hidden_dim, activation='relu', name='Value')
-        self.sqrt = layers.Lambda(lambda x: x/hidden_dim**0.5, name='Sqrt') # scaling by square root : */√dim
-        self.softmax = layers.Activation(activation='softmax', name='Softmax') # weight
-        self.dropout = layers.Dropout(dropout_rate, name='Dropout')
-        #self.concat_Q = layers.Concatenate(name='Concat_Query') # concate context and value (batch, seq_len, dim*2)     
-        self.combine = layers.Lambda(self._combine_head, output_shape=(self.seq_len, hidden_dim*head_num), name='Combine_Head') # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
-        self.output_hidden = layers.Dense(emb_dim, activation='relu',name='Output_hidden') # (batch, seq_len, emb_dim)
-        self.normalize = layers.BatchNormalization(name='normalize')
+        self.Q = layers.Dense(self.hidden_dim, activation='relu', name=f'Query_{en_or_de}{nth}') # (batch, seq_len, emb_dim) -> (batch, seq_len, hidden_dim)
+        self.K = layers.Dense(self.hidden_dim, activation='relu', name=f'Key_{en_or_de}{nth}')
+        self.V = layers.Dense(self.hidden_dim, activation='relu', name=f'Value_{en_or_de}{nth}')
+        self.splitQ = layers.Lambda(self._split_head, output_shape=(head_num, self.seq_len, self.hidden_dim), name=f'SplitHeadQ_{en_or_de}{nth}') # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        self.splitK = layers.Lambda(self._split_head, output_shape=(head_num, self.seq_len, self.hidden_dim), name=f'SplitHeadK_{en_or_de}{nth}') # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        self.splitV = layers.Lambda(self._split_head, output_shape=(head_num, self.seq_len, self.hidden_dim), name=f'SplitHeadV_{en_or_de}{nth}') # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        self.dotQK = layers.Lambda(self._dot_QK, output_shape=(head_num, self.seq_len, self.seq_len), name=f'DotQK_{en_or_de}{nth}')
+        self.sqrt = layers.Lambda(lambda x: x/self.hidden_dim**0.5, name=f'Sqrt_{en_or_de}{nth}') # scaling by square root : */√dim
+        self.softmax = layers.Activation(activation='softmax', name=f'Softmax_{en_or_de}{nth}') # weight
+        self.dropout = layers.Dropout(dropout_rate, name=f'Dropout_{en_or_de}{nth}')
+        self.dotV = layers.Lambda(self._dot_V, output_shape=(head_num, self.seq_len, self.seq_len), name=f'DotV_{en_or_de}{nth}')
+        self.addQ = layers.Lambda(self._add_Q, output_shape=(head_num, self.seq_len, self.seq_len), name=f'AddQ_{en_or_de}{nth}')
+        self.combine = layers.Lambda(self._combine_head, output_shape=(head_num, self.seq_len, self.hidden_dim), name=f'CombineHead_{en_or_de}{nth}') # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
+        self.output_hidden = layers.Dense(emb_dim, activation='relu',name=f'OutputHidden_{en_or_de}{nth}') # (batch, seq_len, emb_dim)
+        self.normalize = layers.BatchNormalization(name=f'Normalize_{en_or_de}{nth}')
+
+    def _dot_QK(self, tensors):
+        Q_tensor = tensors[0]
+        K_tensor = tensors[1]
+        return tf.matmul(Q_tensor, K_tensor, transpose_b=True)
+
+    def _dot_V(self, tensors):
+        weight_tensor = tensors[0]
+        V_tensor = tensors[1]
+        return tf.matmul(weight_tensor, V_tensor, transpose_b=False)
+
+    def _add_Q(self, tensors):
+        context_tensor = tensors[0]
+        Q_tensor = tensors[1]
+        return context_tensor + Q_tensor
 
     def _split_head(self, input_tensor):
         '''
@@ -477,25 +502,133 @@ class SingleTransformer(__BaseModel):
         '''
         batch_size, head_num, seq_length, splitted_dim = tf.unstack(tf.shape(input_tensor))
         input_tensor = tf.transpose(input_tensor, [0, 2, 1, 3])
-        print(input_tensor)
-        return tf.reshape(input_tensor, [batch_size, self.seq_len, self.hidden_dim])
+        return tf.reshape(input_tensor, [batch_size, self.seq_len, self.emb_dim])
 
-    def __call__(self): 
-        input_tensor = self.input 
-        splitted = self.split(input_tensor) # (batch, seq_len Q, emb_dim) -> (batch, head_num, seq_len Q, emb_dim)
-        Q, K, V = self.Q(splitted), self.K(splitted), self.V(splitted) # (batch, head_num, seq_len Q, emb_dim) -> (batch, head_num, seq_len Q, hidden_dim)
-        dot_QK = tf.matmul(Q, K, transpose_b=True, name='Dot_QK') # (batch, head_num, seq_lenQ, dim) * (batch, head_num, seq_lenK, dim) -> weight (batch, head_num, seq_lenQ, seq_lenK) 
+    def __call__(self, input_tensor):
+        Q, K, V = self.Q(input_tensor), self.K(input_tensor), self.V(input_tensor) # (batch, seq_len, emb_dim) -> (batch, seq_len, hidden_dim)
+        splitted_Q = self.splitQ(Q) # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        splitted_K = self.splitK(K) # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        splitted_V = self.splitV(V) # (batch, seq_len, emb_dim) -> (batch, head_num, seq_len, emb_dim//head_num)
+        dot_QK = self.dotQK([splitted_Q, splitted_K]) # Dot Product : (batch, head_num, seq_lenQ, dim) * (batch, head_num, seq_lenK, dim) -> weight (batch, head_num, seq_lenQ, seq_lenK) 
         weight = self.dropout(self.softmax(self.sqrt(dot_QK))) # scaling & softmax
-        context = tf.matmul(weight, V, transpose_b=False, name='Dot_Value') # (batch, head_num, seq_lenQ, seq_lenK) * (batch, head_num, seq_lenV, dim) -> context (batch, head_num, seq_len, dim)
-        #context = self.concat_Q([context, Q])
+        context = self.dotV([weight, splitted_V]) # Dot Product : (batch, head_num, seq_lenQ, seq_lenK) * (batch, head_num, seq_lenV, dim) -> context (batch, head_num, seq_len, dim)
+        context = self.addQ([context, splitted_Q]) # add tensors : (batch, head_num, seq_len, dim) + (batch, head_num, seq_len, emb_dim)
         output = self.output_hidden(self.combine(context)) # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
         return self.normalize(output)
 
+class TargetSourceAttention(SelfAttention):
+    def __init__(self, seq_len, emb_dim=256, head_num=4, dropout_rate=0.2, nth=1, en_or_de='D'):
+        super().__init__(seq_len=seq_len, emb_dim=emb_dim, head_num=head_num, dropout_rate=dropout_rate, nth=nth, en_or_de=en_or_de)
+
+    def __call__(self, input_tensor, memory_tensor):
+        Q, K, V = self.Q(input_tensor), self.K(memory_tensor), self.V(memory_tensor) # (batch, seq_len, emb_dim) -> (batch, seq_len, hidden_dim)
+        splitted_Q = self.splitQ(Q) # (batch, seq_lenQ, emb_dim) -> (batch, head_num, seq_lenQ, emb_dim//head_num)
+        splitted_K = self.splitK(K) # (batch, seq_lenK, emb_dim) -> (batch, head_num, seq_lenK, emb_dim//head_num)
+        splitted_V = self.splitV(V) # (batch, seq_lenV, emb_dim) -> (batch, head_num, seq_lenV, emb_dim//head_num)
+        dot_QK = self.dotQK([splitted_Q, splitted_K]) # Dot Product : (batch, head_num, seq_lenQ, dim) * (batch, head_num, seq_lenK, dim) -> weight (batch, head_num, seq_lenQ, seq_lenK) 
+        weight = self.dropout(self.softmax(self.sqrt(dot_QK))) # scaling & softmax
+        context = self.dotV([weight, splitted_V]) # Dot Product : (batch, head_num, seq_lenQ, seq_lenK) * (batch, head_num, seq_lenV, dim) -> context (batch, head_num, seq_len, dim)
+        context = self.addQ([context, splitted_Q]) # add tensors : (batch, head_num, seq_len, dim) + (batch, head_num, seq_len, emb_dim)
+        output = self.output_hidden(self.combine(context)) # (batch, head_num, seq_len, dim) -> (batch, seq_len, dim*head_num)
+        return self.normalize(output)
+
+
+########## ENCODER AND DECODER ##########
+
+class TransformersEncoder():
+    def __init__(self, data, repeat=3, emb_dim=256, head_num=4, dropout_rate=0.2):
+        self.data = data
+        self.seq_len = data.maxlen_input
+        ## LAYERS
+        self.input = layers.Input(batch_size=None, shape=(self.seq_len,), name='EncoderInput') # input must be (batch, seq_len)
+        self.embedding = layers.Embedding(input_dim = data.output_vocab,
+                                    input_length = data.maxlen_input,
+                                    output_dim = emb_dim,
+                                    mask_zero = True,
+                                    name = 'EncoderEmbedding')
+        self.positional = layers.Lambda(PositionalEncoding, output_shape=(self.seq_len, emb_dim), name='EncoderPosition')
+        self.hopping_layers = []
+        for i in range(repeat):
+            self.hopping_layers.append(SelfAttention(seq_len=self.seq_len, emb_dim=emb_dim, head_num=head_num, dropout_rate=dropout_rate, nth=i+1))
+
+    def __call__(self, input_tensor):
+        x = self.embedding(input_tensor)
+        x = self.positional(x)
+        for i in range(len(self.hopping_layers)):
+            x = self.hopping_layers[i](x)
+        return x
+
     def build(self):
-        output = self()
+        output = self(self.input)
         model = keras.models.Model(self.input, output)
         return model
 
-class Transformers(__BaseModel):
-    def __init__(self, data, repeat=3, emb_dim=256, hidden_dim=256, head_num=4, dropout_rate=0.2):
+class TransformersDecoder():
+    def __init__(self, data, repeat=3, emb_dim=256, head_num=4, dropout_rate=0.2):
         self.data = data
+        self.seq_len = data.maxlen_output
+        self.seq_len_encoder = data.maxlen_input
+        ## LAYERS
+        self.input = layers.Input(batch_size=None, shape=(self.seq_len,), name='DecoderInput') # input must be (batch, seq_len K)
+        self.encoder_output = layers.Input(batch_size=None, shape=(self.seq_len_encoder, emb_dim), name='EncoderOutput') # input must be (batch, seq_len Q)
+        self.embedding = layers.Embedding(input_dim = data.output_vocab,
+                                    input_length = data.maxlen_output,
+                                    output_dim = emb_dim,
+                                    mask_zero = True,
+                                    name = 'DecoderEmbedding')
+        self.positional = layers.Lambda(PositionalEncoding, output_shape=(self.seq_len, emb_dim), name='DecoderPositional')
+        self.hopping_layers = []
+        for i in range(repeat):
+            if i == 0:
+                self.hopping_layers.append(SelfAttention(seq_len=self.seq_len, emb_dim=emb_dim, head_num=head_num, dropout_rate=dropout_rate, nth=i+1, en_or_de='D'))
+            else:    
+                self.hopping_layers.append(TargetSourceAttention(seq_len=self.seq_len, emb_dim=emb_dim, head_num=head_num, dropout_rate=dropout_rate, nth=i+1, en_or_de='D'))
+        self.dense = layers.Dense(emb_dim*2, activation='relu', name=f'DecoderDense')
+        self.output = layers.Dense(data.output_vocab, activation='softmax', name=f'DecoderOutput')
+
+    def __call__(self, decoder_input, encoder_output):
+        x = self.embedding(decoder_input)
+        x = self.positional(x)
+        for i in range(len(self.hopping_layers)):
+            if i == 0:
+                x = self.hopping_layers[i](x)
+            else:
+                x = self.hopping_layers[i](x, encoder_output)
+        x = self.dense(x)
+        return self.output(x)
+
+    def build(self):
+        output = self(self.input, self.encoder_output)
+        model = keras.models.Model([self.input, self.encoder_output], output)
+        return model
+
+########### SEQ2SEQ ##########
+class TransformersSeq2Seq():
+    def __init__(self, data, enc_repeat=3, dec_repeat=3):
+        self.data = data
+        self.input_x, self.input_y, self.output_y = [], [], [] # use for train
+        self.history = None
+        self.encoder = TransformersEncoder(data=data, repeat=enc_repeat)
+        self.decoder = TransformersDecoder(data=data, repeat=dec_repeat)
+
+    def build(self, opt='rmsprop', loss='categorical_crossentropy'):
+        encoder_output = self.encoder(self.encoder.input)
+        output = self.decoder(self.decoder.input, encoder_output)
+        self.model = keras.models.Model(inputs=[self.encoder.input, self.decoder.input], outputs=output)
+        self.model.compile(optimizer=opt, loss=loss, metrics='accuracy')
+        return self.model
+
+    def train(self, batch_size=128, epoch=10, dev_split=0.2):
+        if len(self.input_x) == 0:
+            self.input_x = self.data.make_encoder_input()
+            self.input_y = self.data.make_decoder_input() 
+            self.output_y = self.data.make_decoder_output()
+        history = self.model.fit([self.input_x, self.input_y], self.output_y,
+                            batch_size=batch_size,
+                            epochs=epoch,
+                            validation_split=dev_split)
+        if self.history == None:
+            self.history = history.history
+        else:
+            self.history = {k: v+history.history[k] for k,v in self.history.items()}
+        self.show_history()
